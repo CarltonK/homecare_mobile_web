@@ -22,13 +22,13 @@ class AppWidgets {
   ) =>
       const LandingPage();
 
-      static Widget registrationViewWidget(
+  static Widget registrationViewWidget(
     BuildContext context,
     GoRouterState state,
   ) =>
       const RegistrationPage();
 
-      static Widget passwordResetViewWidget(
+  static Widget passwordResetViewWidget(
     BuildContext context,
     GoRouterState state,
   ) =>

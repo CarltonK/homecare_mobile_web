@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/core.dart';
@@ -94,9 +95,9 @@ class _LandingPageState extends State<LandingPage> {
                 suffixIcon:
                     !_isVisible ? Icons.visibility : Icons.visibility_off,
                 onFieldSubmitted: (_) {
-                  state is AuthLoading
-                    ? null
-                    : () => handleLogin(context, _emailController, _passwordController);
+                  if (state is! AuthLoading) {
+                    handleLogin(context, _emailController, _passwordController);
+                  }
                 },
                 onSuffixPressed: () => setState(() => _isVisible = !_isVisible),
                 isSensitive: !_isVisible,
@@ -121,7 +122,7 @@ class _LandingPageState extends State<LandingPage> {
                     ],
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => context.pushNamed('password-reset'),
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.backgroundGrey,
                       foregroundColor: Colors.white,
@@ -135,7 +136,8 @@ class _LandingPageState extends State<LandingPage> {
               MaterialButton(
                 onPressed: state is AuthLoading
                     ? null
-                    : () => handleLogin(context, _emailController, _passwordController),
+                    : () => handleLogin(
+                        context, _emailController, _passwordController),
                 color: AppColors.green,
                 minWidth: size.width,
                 padding: kPadd15,
@@ -145,6 +147,16 @@ class _LandingPageState extends State<LandingPage> {
                         'LOGIN',
                         style: kNormalWhite.copyWith(fontSize: 20),
                       ),
+              ),
+              kGap24,
+              const LoginDividerWidget(),
+              kGap8,
+              const GoogleSignInWidget(),
+              kGap16,
+              GlobalMultiInfoActionButton(
+                primaryText: 'Don\'t have an account ? ',
+                secondaryText: 'Sign Up',
+                onTap: () => context.pushNamed('registration'),
               ),
             ],
           ),
@@ -228,6 +240,68 @@ class _LandingPageState extends State<LandingPage> {
                 _buildLandingForm(context, size),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LoginDividerWidget extends StatelessWidget {
+  const LoginDividerWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Divider(
+            color: AppColors.backgroundGrey,
+            height: Responsive.getProportionalHeight(context, 12),
+            endIndent: Responsive.getProportionalWidth(context, 9.5),
+          ),
+        ),
+        Text('or', style: kLightBlack),
+        Expanded(
+          child: Divider(
+            color: AppColors.backgroundGrey,
+            height: Responsive.getProportionalHeight(context, 12),
+            endIndent: Responsive.getProportionalWidth(context, 9.5),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class GoogleSignInWidget extends StatelessWidget {
+  const GoogleSignInWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: InkWell(
+        onTap: () => GlobalSnackBar.show(
+          context,
+          'Coming soon',
+          backgroundColor: AppColors.green,
+        ),
+        child: Container(
+          height: Responsive.getProportionalHeight(context, 50),
+          padding: EdgeInsets.symmetric(
+            horizontal: Responsive.getProportionalWidth(context, 60),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SvgPicture.asset(
+                AppConstants().googleIcon,
+                height: Responsive.getProportionalHeight(context, 18),
+                width: Responsive.getProportionalWidth(context, 18),
+              ),
+              SizedBox(width: Responsive.getProportionalWidth(context, 18)),
+              Text('Continue with Google', style: kNormalBlack),
+            ],
           ),
         ),
       ),

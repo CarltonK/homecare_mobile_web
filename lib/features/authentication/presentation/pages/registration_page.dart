@@ -10,6 +10,8 @@ class RegistrationPage extends StatefulWidget {
 class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.square();
+    return Scaffold(
+      appBar: AppBar(),
+    );
   }
 }

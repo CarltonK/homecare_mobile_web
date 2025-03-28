@@ -10,6 +10,8 @@ class ResetPasswordPage extends StatefulWidget {
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.square();
+    return Scaffold(
+      appBar: AppBar(),
+    );
   }
 }
