@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import './../../core/core.dart';
-import './../../helpers/helpers.dart';
 
 class GlobalSnackBar {
   static void show(
