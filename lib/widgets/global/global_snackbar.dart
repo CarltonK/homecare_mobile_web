@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './../../core/styles/style.dart';
+import 'package:flutter_svg/svg.dart';
+import './../../core/core.dart';
+import './../../helpers/helpers.dart';
 
 class GlobalSnackBar {
   static void show(
@@ -11,7 +13,21 @@ class GlobalSnackBar {
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: Row(
+          children: [
+            SvgPicture.asset(
+              colorFilter: const ColorFilter.mode(
+                AppColors.white,
+                BlendMode.srcIn,
+              ),
+              AppConstants().errorIcon,
+              height: Responsive.getProportionalHeight(context, 18),
+              width: Responsive.getProportionalWidth(context, 18),
+            ),
+            SizedBox(width: Responsive.getProportionalWidth(context, 8)),
+            Text(message),
+          ],
+        ),
         backgroundColor: backgroundColor,
         behavior: behavior,
         duration: duration,

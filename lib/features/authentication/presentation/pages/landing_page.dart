@@ -32,12 +32,12 @@ class _LandingPageState extends State<LandingPage> {
     final password = passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      GlobalSnackBar.show(context, 'Please enter both email and password.');
+      GlobalSnackBar.show(context, 'Please enter both email and password');
       return;
     }
 
-    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email)) {
-      GlobalSnackBar.show(context, 'Please enter a valid email address.');
+    if (!RegExp(AppConstants().emailRegex).hasMatch(email)) {
+      GlobalSnackBar.show(context, 'Please enter a valid email address');
       return;
     }
 

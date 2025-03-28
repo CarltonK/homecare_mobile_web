@@ -6,4 +6,7 @@ class AppConstants implements BaseConstants {
 
   @override
   String get errorIcon => 'assets/icons/error.svg';
+
+  @override
+  String get emailRegex => r'^[^@]+@[^@]+\.[^@]+';
 }
