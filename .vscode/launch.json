@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "local",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define-from-file=config/config.json",
+                "-d",
+                "R5CRA1ZWFTK" // Paste the results of >> flutter devices | grep emulator | awk '{print $7}'
+            ]
+        }
+    ]
+}
