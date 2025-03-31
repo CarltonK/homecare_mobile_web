@@ -14,3 +14,4 @@ export 'domain/entities/auth_entity.dart';
 export 'domain/repositories/auth_repository.dart';
 export 'domain/usecases/login_usecase.dart';
 export 'domain/usecases/registration_usecase.dart';
+export 'domain/usecases/logout_usecase.dart';

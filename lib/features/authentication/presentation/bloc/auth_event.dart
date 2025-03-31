@@ -27,3 +27,5 @@ class RegistrationRequested extends AuthEvent {
     this.lastName,
   });
 }
+
+class LogoutRequested extends AuthEvent {}

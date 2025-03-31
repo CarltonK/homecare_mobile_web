@@ -11,6 +11,11 @@ class RegistrationUseCase {
 
   Future<Either<Failure, AuthEntity>> call(String username, String password,
       {String? firstName, String? lastName}) {
-    return repository.authenticate(username, password);
+    return repository.register(
+      username,
+      password,
+      firstName ?? '',
+      lastName ?? '',
+    );
   }
 }

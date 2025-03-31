@@ -30,6 +30,7 @@ dev_dependencies:
   build_runner: ^2.4.15
   json_serializable: ^6.9.4
   freezed: ^3.0.4
+  flutter_launcher_icons: ^0.14.3
 
 flutter:
   uses-material-design: true
@@ -37,3 +38,14 @@ flutter:
   assets:
     - assets/launcher/
     - assets/icons/
+
+flutter_launcher_icons:
+  image_path: "assets/launcher/homecare_logo.png"
+  # Platforms
+  android: true
+  ios: true
+  web:
+    generate: true
+    image_path: "assets/launcher/homecare_logo.png"
+    background_color: "#292929"
+    theme_color: "#292929"

@@ -8,4 +8,13 @@ abstract class AuthRepository {
     String username,
     String password,
   );
+
+  Future<Either<Failure, AuthEntity>> register(
+    String username,
+    String password,
+    String firstName,
+    String lastName,
+  );
+
+  Future<Either<Failure, void>> logout();
 }

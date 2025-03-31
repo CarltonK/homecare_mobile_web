@@ -4,16 +4,26 @@ import '../../authentication.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUseCase loginUseCase;
   final RegistrationUseCase registrationUseCase;
+  final LogoutUseCase logoutUseCase;
 
-  AuthBloc(this.loginUseCase, this.registrationUseCase) : super(AuthInitial()) {
+  AuthBloc(
+    this.loginUseCase,
+    this.registrationUseCase,
+    this.logoutUseCase,
+  ) : super(AuthInitial()) {
     on<CheckAuthStatusEvent>((event, emit) async {
       // emit(AuthLoading());
-      // final user = await authRepository.getCurrentUser(); // Check user session
-      // if (user != null) {
-      //   emit(AuthAuthenticated(user: user));
-      // } else {
-      //   emit(AuthUnauthenticated());
-      // }
+      // final result = await authRepository.getCurrentUser();
+      // result.fold(
+      //   (failure) => emit(AuthFailure(failure.message)),
+      //   (user) {
+      //     if (user != null) {
+      //       emit(AuthSuccess(user));
+      //     } else {
+      //       emit(AuthUnauthenticated());
+      //     }
+      //   },
+      // );
     });
 
     on<LoginRequested>((event, emit) async {
@@ -36,6 +46,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       result.fold(
         (failure) => emit(AuthFailure(failure.message)),
         (authEntity) => emit(AuthSuccess(authEntity)),
+      );
+    });
+
+    on<LogoutRequested>((event, emit) async {
+      emit(AuthLoading());
+      final result = await logoutUseCase();
+      result.fold(
+        (failure) => emit(AuthFailure(failure.message)),
+        (_) => emit(AuthUnauthenticated()),
       );
     });
   }

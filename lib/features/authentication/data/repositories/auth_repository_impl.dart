@@ -18,4 +18,30 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(ServerFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, AuthEntity>> register(String username, String password,
+      String firstName, String lastName) async {
+    try {
+      final response = await remoteDataSource.register(
+        username,
+        password,
+        firstName,
+        lastName,
+      );
+      return Right(AuthEntity.fromLoginResponse(response));
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> logout() async {
+    try {
+      await remoteDataSource.logout();
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
 }
