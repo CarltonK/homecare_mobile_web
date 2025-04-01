@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../../../../core/core.dart';
 import '../../authentication.dart';
 
@@ -10,6 +12,7 @@ abstract class AuthRemoteDataSource {
     String lastName,
   );
   Future<void> logout();
+  Future<ResponseModel> passwordReset(String email);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -74,6 +77,27 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       // if (response.statusCode == 200) return apiClient.clearAuth();
     } catch (e) {
       throw Exception('Logout Failed');
+    }
+  }
+
+  @override
+  Future<ResponseModel> passwordReset(String email) async {
+    try {
+      final response = await apiClient.apiPost(
+        '/auth/password/request-reset',
+        data: {'email': email},
+      );
+      return ResponseModel.fromJson(response.data);
+    } on DioException catch (e) {
+      // If response exists, return it as ResponseModel
+      if (e.response != null && e.response!.data is Map<String, dynamic>) {
+        return ResponseModel.fromJson(e.response!.data);
+      }
+
+      // Fallback: Return a generic error message
+      return const ResponseModel(error: 'An unexpected error occurred');
+    } catch (e) {
+      return const ResponseModel(error: 'An unexpected error occurred');
     }
   }
 }

@@ -8,8 +8,20 @@ abstract class ResponseModel with _$ResponseModel {
   @JsonSerializable(explicitToJson: true)
   const factory ResponseModel({
     @JsonKey(name: 'error') String? error,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'validation_errors') ValidationErrors? validationErrors,
   }) = _ResponseModel;
 
   factory ResponseModel.fromJson(Map<String, dynamic> json) =>
       _$ResponseModelFromJson(json);
+}
+
+@freezed
+abstract class ValidationErrors with _$ValidationErrors {
+  const factory ValidationErrors({
+    @JsonKey(name: 'email') List<String>? email,
+  }) = _ValidationErrors;
+
+  factory ValidationErrors.fromJson(Map<String, dynamic> json) =>
+      _$ValidationErrorsFromJson(json);
 }

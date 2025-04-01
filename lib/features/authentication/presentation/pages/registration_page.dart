@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:homecare_mobile/core/core.dart';
+import '../../../../core/core.dart';
 
 import '../../../../widgets/widgets.dart';
 import '../../../features.dart';
@@ -24,20 +24,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final FocusNode lastNameFocus = FocusNode();
   final FocusNode emailFocus = FocusNode();
   final FocusNode passwordFocus = FocusNode();
-
-  /* 
-   * Landing Banner
-   */
-  Widget _buildLandingBanner(Size size) {
-    return SizedBox(
-      width: size.width * .5,
-      height: size.height,
-      child: Image.asset(
-        'assets/launcher/homecare_gps_logo.png',
-        fit: BoxFit.contain,
-      ),
-    );
-  }
 
   void handleRegistration(
     BuildContext context,
@@ -203,7 +189,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 minWidth: size.width,
                 padding: kPadd15,
                 child: state is AuthLoading
-                    ? const CircularProgressIndicator(color: AppColors.white)
+                    ? const CircularProgressIndicator(color: AppColors.green)
                     : Text(
                         'REGISTER',
                         style: kNormalWhite.copyWith(fontSize: 20),
@@ -221,20 +207,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.white,
-      ),
       body: Responsive(
         desktop: Row(
           children: [
-            _buildLandingBanner(size),
+            GlobalLandingBanner(size: size),
             _buildRegistrationForm(context, size),
           ],
         ),
         tablet: Row(
           children: [
-            _buildLandingBanner(size),
+            GlobalLandingBanner(size: size),
             _buildRegistrationForm(context, size),
           ],
         ),

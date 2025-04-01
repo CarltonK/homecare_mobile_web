@@ -141,7 +141,7 @@ class _LandingPageState extends State<LandingPage> {
                 minWidth: size.width,
                 padding: kPadd15,
                 child: state is AuthLoading
-                    ? const CircularProgressIndicator(color: AppColors.white)
+                    ? const CircularProgressIndicator(color: AppColors.green)
                     : Text(
                         'LOGIN',
                         style: kNormalWhite.copyWith(fontSize: 20),
@@ -183,20 +183,6 @@ class _LandingPageState extends State<LandingPage> {
         : const SizedBox.shrink();
   }
 
-  /* 
-   * Landing Banner
-   */
-  Widget _buildLandingBanner(Size size) {
-    return SizedBox(
-      width: size.width * .5,
-      height: size.height,
-      child: Image.asset(
-        'assets/launcher/homecare_gps_logo.png',
-        fit: BoxFit.contain,
-      ),
-    );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -221,14 +207,14 @@ class _LandingPageState extends State<LandingPage> {
       body: Responsive(
         desktop: Row(
           children: [
+            GlobalLandingBanner(size: size),
             _buildLandingForm(context, size),
-            _buildLandingBanner(size),
           ],
         ),
         tablet: Row(
           children: [
+            GlobalLandingBanner(size: size),
             _buildLandingForm(context, size),
-            _buildLandingBanner(size),
           ],
         ),
         mobile: GestureDetector(
@@ -283,7 +269,7 @@ class GoogleSignInWidget extends StatelessWidget {
         onTap: () => GlobalSnackBar.show(
           context,
           'Coming soon',
-          backgroundColor: AppColors.green,
+          isSuccess: true,
         ),
         child: Container(
           height: Responsive.getProportionalHeight(context, 50),

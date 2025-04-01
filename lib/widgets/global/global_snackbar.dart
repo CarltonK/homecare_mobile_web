@@ -6,13 +6,12 @@ class GlobalSnackBar {
   static void show(
     BuildContext context,
     String message, {
-    Color backgroundColor = AppColors.red,
-    Duration duration = const Duration(seconds: 3),
-    SnackBarBehavior behavior = SnackBarBehavior.floating,
+    bool isSuccess = false,
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Row(
+        content: Wrap(
+          alignment: WrapAlignment.center,
           children: [
             SvgPicture.asset(
               colorFilter: const ColorFilter.mode(
@@ -24,12 +23,12 @@ class GlobalSnackBar {
               width: Responsive.getProportionalWidth(context, 18),
             ),
             SizedBox(width: Responsive.getProportionalWidth(context, 8)),
-            Text(message),
+            Text(message, textAlign: TextAlign.center),
           ],
         ),
-        backgroundColor: backgroundColor,
-        behavior: behavior,
-        duration: duration,
+        backgroundColor: isSuccess ? AppColors.green : AppColors.red,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 3),
       ),
     );
   }

@@ -26,7 +26,8 @@ void init() {
   sl.registerLazySingleton(() => LoginUseCase(sl()));
   sl.registerLazySingleton(() => RegistrationUseCase(sl()));
   sl.registerLazySingleton(() => LogoutUseCase(sl()));
+  sl.registerLazySingleton(() => PasswordResetUseCase(sl()));
 
   // Blocs
-  sl.registerFactory(() => AuthBloc(sl(), sl(), sl()));
+  sl.registerFactory(() => AuthBloc(sl(), sl(), sl(), sl()));
 }

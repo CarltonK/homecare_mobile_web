@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../domain/entities/auth_entity.dart';
+import 'package:homecare_mobile/features/features.dart';
 
 abstract class AuthState extends Equatable {
   @override
@@ -22,4 +22,16 @@ class AuthFailure extends AuthState {
   final String message;
 
   AuthFailure(this.message);
+}
+
+class AuthResponse extends AuthState {
+  final ResponseModel model;
+
+  AuthResponse(this.model);
+}
+
+class PasswordResetResponse extends AuthState {
+  final ResponseModel model;
+
+  PasswordResetResponse(this.model);
 }

@@ -17,4 +17,6 @@ abstract class AuthRepository {
   );
 
   Future<Either<Failure, void>> logout();
+
+  Future<Either<ResponseModel, ResponseModel>> passwordReset(String email);
 }

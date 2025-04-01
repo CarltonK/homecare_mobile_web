@@ -44,4 +44,14 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(ServerFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<ResponseModel, ResponseModel>> passwordReset(String email) async {
+    try {
+      final response = await remoteDataSource.passwordReset(email);
+      return Right(response);
+    } catch (e) {
+      return Left(ResponseModel(message: e.toString()));
+    }
+  }
 }
