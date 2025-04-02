@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/core.dart';
 import '../../authentication.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -25,8 +24,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, AuthEntity>> register(String username, String password,
-      String firstName, String lastName) async {
+  Future<Either<ResponseModel, AuthEntity>> register(String username,
+      String password, String firstName, String lastName) async {
     try {
       final response = await remoteDataSource.register(
         username,
@@ -36,7 +35,10 @@ class AuthRepositoryImpl implements AuthRepository {
       );
       return Right(AuthEntity.fromLoginResponse(response));
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      if (e is ResponseModel) {
+        return Left(e);
+      }
+      return Left(ResponseModel(message: 'Authentication failed: $e'));
     }
   }
 

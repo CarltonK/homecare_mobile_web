@@ -31,7 +31,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
     if (shouldExit && context.mounted) {
       context.read<AuthBloc>().add(LogoutRequested());
-      // Navigator.of(context).pop();
+      Navigator.of(context).pop();
     }
   }
 

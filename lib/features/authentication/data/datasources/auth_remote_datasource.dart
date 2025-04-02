@@ -69,7 +69,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       return LoginResponse.fromJson(response.data);
     } catch (e) {
-      throw Exception('Authentication failed');
+      if (e is DioException) {
+        throw ResponseModel.fromJson(e.response!.data);
+      } else {
+        throw Exception('Registration failed');
+      }
     }
   }
 

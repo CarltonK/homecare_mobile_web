@@ -100,6 +100,23 @@ class _RegistrationPageState extends State<RegistrationPage> {
         if (state is AuthSuccess) {
           // Navigate to the dashboard
           context.go('/dashboard');
+        } else if (state is AuthResponse) {
+          late bool isSuccess = false;
+          late String msg = 'Success';
+
+          if (state.model.message != null) {
+            isSuccess = true;
+            msg = state.model.message!;
+            context.pop();
+          } else if (state.model.error != null) {
+            msg = state.model.error!;
+          } else if (state.model.validationErrors != null) {
+            msg = state.model.validationErrors!.email!.join(',');
+          }
+
+          GlobalSnackBar.show(context, msg, isSuccess: isSuccess);
+
+          // Navigate back if "message" key in model
         } else if (state is AuthFailure) {
           GlobalSnackBar.show(context, state.message);
         }

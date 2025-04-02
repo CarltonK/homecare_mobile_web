@@ -46,7 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         lastName: event.lastName,
       );
       result.fold(
-        (failure) => emit(AuthFailure(failure.message)),
+        (failure) => emit(AuthResponse(failure)),
         (authEntity) => emit(AuthSuccess(authEntity)),
       );
     });
