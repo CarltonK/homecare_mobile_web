@@ -12,7 +12,9 @@ export 'data/repositories/auth_repository_impl.dart';
 
 export 'domain/entities/auth_entity.dart';
 export 'domain/repositories/auth_repository.dart';
+
 export 'domain/usecases/login_usecase.dart';
 export 'domain/usecases/registration_usecase.dart';
 export 'domain/usecases/logout_usecase.dart';
 export 'domain/usecases/password_reset_usecase.dart';
+export 'domain/usecases/fetch_user_details_usecase.dart';

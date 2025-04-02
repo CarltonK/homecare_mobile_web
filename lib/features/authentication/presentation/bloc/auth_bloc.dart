@@ -6,12 +6,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final RegistrationUseCase registrationUseCase;
   final LogoutUseCase logoutUseCase;
   final PasswordResetUseCase passwordResetUseCase;
+  final FetchUserDetailsUseCase fetchUserDetailsUseCase;
 
   AuthBloc(
     this.loginUseCase,
     this.registrationUseCase,
     this.logoutUseCase,
     this.passwordResetUseCase,
+    this.fetchUserDetailsUseCase,
   ) : super(AuthInitial()) {
     on<CheckAuthStatusEvent>((event, emit) async {
       // emit(AuthLoading());
@@ -66,6 +68,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       result.fold(
         (failure) => emit(AuthResponse(failure)),
         (response) => emit(AuthResponse(response)),
+      );
+    });
+
+    on<FetchUserDetails>((event, emit) async {
+      emit(AuthLoading());
+      final result = await fetchUserDetailsUseCase();
+      result.fold(
+        (failure) => emit(AuthResponse(failure)),
+        (response) => emit(AuthUserDetailsSuccess(response)),
       );
     });
   }

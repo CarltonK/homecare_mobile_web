@@ -43,8 +43,8 @@ class ApiClient {
       {Map<String, dynamic>? queryParams}) async {
     try {
       return await _dio.get('/api/v1$endpoint', queryParameters: queryParams);
-    } on DioException catch (e) {
-      throw Exception('GET request failed: ${e.response?.data ?? e.message}');
+    } on DioException {
+      rethrow;
     }
   }
 

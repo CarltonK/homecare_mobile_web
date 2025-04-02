@@ -18,4 +18,6 @@ abstract class AuthRepository {
   Future<Either<ResponseModel, void>> logout();
 
   Future<Either<ResponseModel, ResponseModel>> passwordReset(String email);
+
+  Future<Either<ResponseModel, UserResponseModel>> fetchUserDetails();
 }

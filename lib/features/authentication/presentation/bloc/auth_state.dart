@@ -18,6 +18,12 @@ class AuthSuccess extends AuthState {
   AuthSuccess(this.authEntity);
 }
 
+class AuthUserDetailsSuccess extends AuthState {
+  final UserResponseModel model;
+
+  AuthUserDetailsSuccess(this.model);
+}
+
 class AuthFailure extends AuthState {
   final String message;
 

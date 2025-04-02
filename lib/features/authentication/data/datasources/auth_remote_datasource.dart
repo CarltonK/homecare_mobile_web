@@ -13,6 +13,7 @@ abstract class AuthRemoteDataSource {
   );
   Future<void> logout();
   Future<ResponseModel> passwordReset(String email);
+  Future<UserResponseModel> fetchUserDetails();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -104,6 +105,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw ResponseModel.fromJson(e.response!.data);
       } else {
         throw Exception('Password Reset failed');
+      }
+    }
+  }
+
+  @override
+  Future<UserResponseModel> fetchUserDetails() async {
+    try {
+      final response = await apiClient.apiGet('/users/me');
+      return UserResponseModel.fromJson(response.data);
+    } catch (e) {
+      if (e is DioException) {
+        throw ResponseModel.fromJson(e.response!.data);
+      } else {
+        throw Exception('Fetch User Details failed');
       }
     }
   }

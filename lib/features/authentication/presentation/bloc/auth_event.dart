@@ -35,3 +35,5 @@ class PasswordResetRequested extends AuthEvent {
 
   PasswordResetRequested({required this.email});
 }
+
+class FetchUserDetails extends AuthEvent {}

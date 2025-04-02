@@ -68,4 +68,17 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(ResponseModel(message: 'Password Reset failed: $e'));
     }
   }
+
+  @override
+  Future<Either<ResponseModel, UserResponseModel>> fetchUserDetails() async {
+    try {
+      final response = await remoteDataSource.fetchUserDetails();
+      return Right(response);
+    } catch (e) {
+      if (e is ResponseModel) {
+        return Left(e);
+      }
+      return Left(ResponseModel(message: 'Fetch User Details failed: $e'));
+    }
+  }
 }

@@ -36,10 +36,20 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    context.read<AuthBloc>().add(FetchUserDetails());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is AuthResponse) {
+        if (state is AuthUserDetailsSuccess) {
+          final user = state.model;
+          logger.d(user);
+        } else if (state is AuthResponse) {
           late bool isSuccess = false;
           late String msg = 'Success';
 
@@ -57,6 +67,9 @@ class _DashboardPageState extends State<DashboardPage> {
         }
       },
       builder: (context, state) {
+        if (state is AuthLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
         return PopScope(
           canPop: _shouldPop,
           onPopInvokedWithResult: (didPop, result) async {
