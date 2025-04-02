@@ -80,7 +80,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           if (state.model.message != null) {
             isSuccess = true;
             msg = state.model.message!;
-            context.pop();
           } else if (state.model.error != null) {
             msg = state.model.error!;
           } else if (state.model.validationErrors != null) {

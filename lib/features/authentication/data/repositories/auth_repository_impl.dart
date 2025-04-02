@@ -9,13 +9,18 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, AuthEntity>> authenticate(
-      String username, String password) async {
+  Future<Either<ResponseModel, AuthEntity>> authenticate(
+    String username,
+    String password,
+  ) async {
     try {
       final response = await remoteDataSource.authenticate(username, password);
       return Right(AuthEntity.fromLoginResponse(response));
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      if (e is ResponseModel) {
+        return Left(e);
+      }
+      return Left(ResponseModel(message: 'Authentication failed: $e'));
     }
   }
 
@@ -46,12 +51,16 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<ResponseModel, ResponseModel>> passwordReset(String email) async {
+  Future<Either<ResponseModel, ResponseModel>> passwordReset(
+      String email) async {
     try {
       final response = await remoteDataSource.passwordReset(email);
       return Right(response);
     } catch (e) {
-      return Left(ResponseModel(message: e.toString()));
+      if (e is ResponseModel) {
+        return Left(e);
+      }
+      return Left(ResponseModel(message: 'Authentication failed: $e'));
     }
   }
 }

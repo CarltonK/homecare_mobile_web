@@ -23,10 +23,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<LoginResponse> authenticate(String email, String password) async {
     try {
-      final response = await apiClient.apiPost('/auth/login', data: {
-        'email': email,
-        'password': password,
-      });
+      final response = await apiClient.apiPost(
+        '/auth/login',
+        data: {'email': email, 'password': password},
+      );
 
       if (response.statusCode == 200) {
         // Set credentials in ApiClient after successful login
@@ -37,7 +37,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       return LoginResponse.fromJson(response.data);
     } catch (e) {
-      throw Exception('Authentication failed');
+      if (e is DioException) {
+        throw ResponseModel.fromJson(e.response!.data);
+      } else {
+        throw Exception('Authentication failed');
+      }
     }
   }
 
@@ -88,16 +92,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         data: {'email': email},
       );
       return ResponseModel.fromJson(response.data);
-    } on DioException catch (e) {
-      // If response exists, return it as ResponseModel
-      if (e.response != null && e.response!.data is Map<String, dynamic>) {
-        return ResponseModel.fromJson(e.response!.data);
-      }
-
-      // Fallback: Return a generic error message
-      return const ResponseModel(error: 'An unexpected error occurred');
     } catch (e) {
-      return const ResponseModel(error: 'An unexpected error occurred');
+      if (e is DioException) {
+        throw ResponseModel.fromJson(e.response!.data);
+      } else {
+        throw Exception('Authentication failed');
+      }
     }
   }
 }

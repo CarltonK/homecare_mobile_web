@@ -54,12 +54,10 @@ class ApiClient {
       return await _dio.post(
         '/api/v1$endpoint',
         data: data,
-        options: Options(
-          headers: {'Authorization': _authKey ?? ''},
-        ),
+        options: Options(headers: {'Authorization': _authKey ?? ''}),
       );
-    } on DioException catch (e) {
-      throw Exception('POST request failed: ${e.response?.data ?? e.message}');
+    } on DioException {
+      rethrow;
     }
   }
 }

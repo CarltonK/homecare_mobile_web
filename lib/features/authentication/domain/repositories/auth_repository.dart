@@ -4,7 +4,7 @@ import '../../../../core/core.dart';
 import '../../authentication.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, AuthEntity>> authenticate(
+  Future<Either<ResponseModel, AuthEntity>> authenticate(
     String username,
     String password,
   );

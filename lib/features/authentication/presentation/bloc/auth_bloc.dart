@@ -32,7 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoading());
       final result = await loginUseCase(event.email, event.password);
       result.fold(
-        (failure) => emit(AuthFailure(failure.message)),
+        (failure) => emit(AuthResponse(failure)),
         (authEntity) => emit(AuthSuccess(authEntity)),
       );
     });
