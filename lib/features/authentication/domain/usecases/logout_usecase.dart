@@ -1,13 +1,12 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/core.dart';
-import '../repositories/auth_repository.dart';
+import '../../../features.dart';
 
 class LogoutUseCase {
   final AuthRepository repository;
 
   LogoutUseCase(this.repository);
 
-  Future<Either<Failure, void>> call() {
+  Future<Either<ResponseModel, void>> call() {
     return repository.logout();
   }
 }

@@ -41,12 +41,15 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> logout() async {
+  Future<Either<ResponseModel, void>> logout() async {
     try {
       await remoteDataSource.logout();
       return const Right(null);
     } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
+      if (e is ResponseModel) {
+        return Left(e);
+      }
+      return Left(ResponseModel(message: 'Logout failed: $e'));
     }
   }
 
@@ -60,7 +63,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (e is ResponseModel) {
         return Left(e);
       }
-      return Left(ResponseModel(message: 'Authentication failed: $e'));
+      return Left(ResponseModel(message: 'Password Reset failed: $e'));
     }
   }
 }

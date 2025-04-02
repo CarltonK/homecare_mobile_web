@@ -16,7 +16,7 @@ abstract class AuthRepository {
     String lastName,
   );
 
-  Future<Either<Failure, void>> logout();
+  Future<Either<ResponseModel, void>> logout();
 
   Future<Either<ResponseModel, ResponseModel>> passwordReset(String email);
 }

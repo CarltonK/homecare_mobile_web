@@ -55,7 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoading());
       final result = await logoutUseCase();
       result.fold(
-        (failure) => emit(AuthFailure(failure.message)),
+        (failure) => emit(AuthResponse(failure)),
         (_) => emit(AuthUnauthenticated()),
       );
     });

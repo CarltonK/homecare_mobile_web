@@ -76,11 +76,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> logout() async {
     try {
-      // TODO: Uncomment
-      // final response = await apiClient.apiPost('/auth/logout');
-      // if (response.statusCode == 200) return apiClient.clearAuth();
+      final response = await apiClient.apiPost('/auth/logout');
+      if (response.statusCode == 200) return apiClient.clearAuth();
     } catch (e) {
-      throw Exception('Logout Failed');
+      if (e is DioException) {
+        throw ResponseModel.fromJson(e.response!.data);
+      } else {
+        throw Exception('Logout failed');
+      }
     }
   }
 
@@ -96,7 +99,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (e is DioException) {
         throw ResponseModel.fromJson(e.response!.data);
       } else {
-        throw Exception('Authentication failed');
+        throw Exception('Password Reset failed');
       }
     }
   }

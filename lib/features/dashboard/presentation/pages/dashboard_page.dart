@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:homecare_mobile/core/styles/style.dart';
 import '../../../../core/utilities/utilities.dart';
 import '../../../../widgets/widgets.dart';
@@ -30,30 +31,52 @@ class _DashboardPageState extends State<DashboardPage> {
 
     if (shouldExit && context.mounted) {
       context.read<AuthBloc>().add(LogoutRequested());
-      Navigator.of(context).pop();
+      // Navigator.of(context).pop();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: _shouldPop,
-      onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) await _showExitConfirmation(context);
+    return BlocConsumer<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthResponse) {
+          late bool isSuccess = false;
+          late String msg = 'Success';
+
+          if (state.model.message != null) {
+            isSuccess = true;
+            msg = state.model.message!;
+            context.pop();
+          } else if (state.model.error != null) {
+            msg = state.model.error!;
+          } else if (state.model.validationErrors != null) {
+            msg = state.model.validationErrors!.email!.join(',');
+          }
+
+          GlobalSnackBar.show(context, msg, isSuccess: isSuccess);
+        }
       },
-      child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            GlobalCircleButton(
-              icon: Icons.exit_to_app,
-              color: AppColors.black,
-              onPressed: () async {
-                await _showExitConfirmation(context);
-              },
+      builder: (context, state) {
+        return PopScope(
+          canPop: _shouldPop,
+          onPopInvokedWithResult: (didPop, result) async {
+            if (!didPop) await _showExitConfirmation(context);
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              actions: [
+                GlobalCircleButton(
+                  icon: Icons.exit_to_app,
+                  color: AppColors.black,
+                  onPressed: () async {
+                    await _showExitConfirmation(context);
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
