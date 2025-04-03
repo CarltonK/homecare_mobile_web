@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "749670047100",
+    "project_id": "miniapps-db10b",
+    "storage_bucket": "miniapps-db10b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749670047100:android:b8c8fb047306c8e5fd58f9",
+        "android_client_info": {
+          "package_name": "com.homecare.homecare_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL6mSy8PJ8p2S4nixQsmK1YlfH0H0hQY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
