@@ -12,12 +12,13 @@ void init() {
   // Register Connectivity
   sl.registerLazySingleton(() => Connectivity());
   sl.registerLazySingleton<Dio>(() => Dio());
-  sl.registerLazySingleton<ApiClient>(() => ApiClient(sl()));
+  sl.registerLazySingleton<ApiClient>(() => ApiClient(sl<Dio>()));
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfo(sl<Connectivity>()));
 
   // Data Sources
   sl.registerLazySingleton<AuthRemoteDataSource>(
-      () => AuthRemoteDataSourceImpl(sl()));
+    () => AuthRemoteDataSourceImpl(sl()),
+  );
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));

@@ -8,8 +8,8 @@ class ApiClient {
     const String baseUrl = String.fromEnvironment('base_url');
 
     _dio.options.baseUrl = baseUrl;
+    _dio.options.headers['Content-Type'] = 'application/json';
 
-    // Add a single interceptor at initialization
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
@@ -42,7 +42,11 @@ class ApiClient {
   Future<Response> apiGet(String endpoint,
       {Map<String, dynamic>? queryParams}) async {
     try {
-      return await _dio.get('/api/v1$endpoint', queryParameters: queryParams);
+      return await _dio.get(
+        '/api/v1$endpoint',
+        queryParameters: queryParams,
+        options: Options(headers: {'Authorization': _authKey ?? ''}),
+      );
     } on DioException {
       rethrow;
     }
