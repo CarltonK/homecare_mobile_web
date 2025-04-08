@@ -39,9 +39,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return LoginResponse.fromJson(response.data);
     } catch (e) {
       if (e is DioException) {
-        throw ResponseModel.fromJson(e.response!.data);
+        if (e.error is ResponseModel) {
+          throw e.error!;
+        } else {
+          final errorData =
+              e.response?.data ?? {'error': 'Authentication failed'};
+          throw ResponseModel.fromJson(errorData);
+        }
       } else {
-        throw Exception('Authentication failed');
+        throw const ResponseModel(error: 'Unexpected error');
       }
     }
   }
@@ -71,9 +77,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return LoginResponse.fromJson(response.data);
     } catch (e) {
       if (e is DioException) {
-        throw ResponseModel.fromJson(e.response!.data);
+        if (e.error is ResponseModel) {
+          throw e.error!;
+        } else {
+          final errorData =
+              e.response?.data ?? {'error': 'Registration failed'};
+          throw ResponseModel.fromJson(errorData);
+        }
       } else {
-        throw Exception('Registration failed');
+        throw const ResponseModel(error: 'Unexpected error');
       }
     }
   }
@@ -85,9 +97,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (response.statusCode == 200) return apiClient.clearAuth();
     } catch (e) {
       if (e is DioException) {
-        throw ResponseModel.fromJson(e.response!.data);
+        if (e.error is ResponseModel) {
+          throw e.error!;
+        } else {
+          final errorData = e.response?.data ?? {'error': 'Logout failed'};
+          throw ResponseModel.fromJson(errorData);
+        }
       } else {
-        throw Exception('Logout failed');
+        throw const ResponseModel(error: 'Unexpected error');
       }
     }
   }
@@ -102,9 +119,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return ResponseModel.fromJson(response.data);
     } catch (e) {
       if (e is DioException) {
-        throw ResponseModel.fromJson(e.response!.data);
+        if (e.error is ResponseModel) {
+          throw e.error!;
+        } else {
+          final errorData =
+              e.response?.data ?? {'error': 'Password Reset failed'};
+          throw ResponseModel.fromJson(errorData);
+        }
       } else {
-        throw Exception('Password Reset failed');
+        throw const ResponseModel(error: 'Unexpected error');
       }
     }
   }
@@ -116,9 +139,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return UserResponseModel.fromJson(response.data);
     } catch (e) {
       if (e is DioException) {
-        throw ResponseModel.fromJson(e.response!.data);
+        if (e.error is ResponseModel) {
+          throw e.error!;
+        } else {
+          final errorData =
+              e.response?.data ?? {'error': 'Fetch User Details failed'};
+          throw ResponseModel.fromJson(errorData);
+        }
       } else {
-        throw Exception('Fetch User Details failed');
+        throw const ResponseModel(error: 'Unexpected error');
       }
     }
   }

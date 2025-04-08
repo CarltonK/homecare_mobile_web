@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../core.dart';
+
 class ApiClient {
   final Dio _dio;
   String? _authKey;
@@ -22,6 +24,8 @@ class ApiClient {
         },
       ),
     );
+
+    _dio.interceptors.add(DioErrorInterceptor(_dio));
 
     _dio.interceptors.add(LogInterceptor(
       responseBody: true,

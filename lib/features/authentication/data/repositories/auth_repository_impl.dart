@@ -19,7 +19,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (e is ResponseModel) {
         return Left(e);
       }
-      return Left(ResponseModel(message: 'Authentication failed: $e'));
+      return Left(ResponseModel(error: 'Authentication failed: $e'));
     }
   }
 
@@ -38,7 +38,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (e is ResponseModel) {
         return Left(e);
       }
-      return Left(ResponseModel(message: 'Authentication failed: $e'));
+      return Left(ResponseModel(error: 'Registration failed: $e'));
     }
   }
 
