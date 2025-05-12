@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import './../../../../core/core.dart';
 import '../../authentication.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -33,6 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginRequested>((event, emit) async {
       emit(AuthLoading());
       final result = await loginUseCase(event.email, event.password);
+      logger.d(result);
       result.fold(
         (failure) => emit(AuthResponse(failure)),
         (authEntity) => emit(AuthSuccess(authEntity)),

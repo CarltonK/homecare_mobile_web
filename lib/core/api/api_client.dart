@@ -47,7 +47,7 @@ class ApiClient {
       {Map<String, dynamic>? queryParams}) async {
     try {
       return await _dio.get(
-        '/api/v1$endpoint',
+        endpoint,
         queryParameters: queryParams,
         options: Options(headers: {'Authorization': _authKey ?? ''}),
       );
@@ -60,7 +60,7 @@ class ApiClient {
       {Map<String, dynamic>? data}) async {
     try {
       return await _dio.post(
-        '/api/v1$endpoint',
+        endpoint,
         data: data,
         options: Options(headers: {'Authorization': _authKey ?? ''}),
       );

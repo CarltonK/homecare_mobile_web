@@ -26,13 +26,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     try {
       final response = await apiClient.apiPost(
         '/auth/login',
-        data: {'email': email, 'password': password},
+        data: {'emailAddress': 'Justine.Cummings@yahoo.com', 'password': 'Justine.Cummings@yahoo.com'},
       );
 
       if (response.statusCode == 200) {
         // Set credentials in ApiClient after successful login
         // ignore: avoid_dynamic_calls
-        final String token = response.data['access_token'];
+        final String token = response.data['accessToken'];
         apiClient.setAuthToken(token);
       }
 

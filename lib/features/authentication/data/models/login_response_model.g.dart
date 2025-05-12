@@ -8,16 +8,16 @@ part of 'login_response_model.dart';
 
 _LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) =>
     _LoginResponse(
-      accessToken: json['access_token'] as String,
-      refreshToken: json['refresh_token'] as String,
-      expiresIn: (json['expires_in'] as num).toInt(),
-      sessionId: json['session_id'] as String,
+      accessToken: json['accessToken'] as String,
+      refreshToken: json['refreshToken'] as String,
+      expiresIn: (json['expiresIn'] as num).toInt(),
+      sessionId: json['sessionId'] as String,
     );
 
 Map<String, dynamic> _$LoginResponseToJson(_LoginResponse instance) =>
     <String, dynamic>{
-      'access_token': instance.accessToken,
-      'refresh_token': instance.refreshToken,
-      'expires_in': instance.expiresIn,
-      'session_id': instance.sessionId,
+      'accessToken': instance.accessToken,
+      'refreshToken': instance.refreshToken,
+      'expiresIn': instance.expiresIn,
+      'sessionId': instance.sessionId,
     };

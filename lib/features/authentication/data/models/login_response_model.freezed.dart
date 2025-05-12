@@ -15,13 +15,13 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$LoginResponse {
-  @JsonKey(name: 'access_token')
+  @JsonKey(name: 'accessToken')
   String get accessToken;
-  @JsonKey(name: 'refresh_token')
+  @JsonKey(name: 'refreshToken')
   String get refreshToken;
-  @JsonKey(name: 'expires_in')
+  @JsonKey(name: 'expiresIn')
   int get expiresIn;
-  @JsonKey(name: 'session_id')
+  @JsonKey(name: 'sessionId')
   String get sessionId;
 
   /// Create a copy of LoginResponse
@@ -68,10 +68,10 @@ abstract mixin class $LoginResponseCopyWith<$Res> {
       _$LoginResponseCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'access_token') String accessToken,
-      @JsonKey(name: 'refresh_token') String refreshToken,
-      @JsonKey(name: 'expires_in') int expiresIn,
-      @JsonKey(name: 'session_id') String sessionId});
+      {@JsonKey(name: 'accessToken') String accessToken,
+      @JsonKey(name: 'refreshToken') String refreshToken,
+      @JsonKey(name: 'expiresIn') int expiresIn,
+      @JsonKey(name: 'sessionId') String sessionId});
 }
 
 /// @nodoc
@@ -117,24 +117,24 @@ class _$LoginResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _LoginResponse implements LoginResponse {
   const _LoginResponse(
-      {@JsonKey(name: 'access_token') required this.accessToken,
-      @JsonKey(name: 'refresh_token') required this.refreshToken,
-      @JsonKey(name: 'expires_in') required this.expiresIn,
-      @JsonKey(name: 'session_id') required this.sessionId});
+      {@JsonKey(name: 'accessToken') required this.accessToken,
+      @JsonKey(name: 'refreshToken') required this.refreshToken,
+      @JsonKey(name: 'expiresIn') required this.expiresIn,
+      @JsonKey(name: 'sessionId') required this.sessionId});
   factory _LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseFromJson(json);
 
   @override
-  @JsonKey(name: 'access_token')
+  @JsonKey(name: 'accessToken')
   final String accessToken;
   @override
-  @JsonKey(name: 'refresh_token')
+  @JsonKey(name: 'refreshToken')
   final String refreshToken;
   @override
-  @JsonKey(name: 'expires_in')
+  @JsonKey(name: 'expiresIn')
   final int expiresIn;
   @override
-  @JsonKey(name: 'session_id')
+  @JsonKey(name: 'sessionId')
   final String sessionId;
 
   /// Create a copy of LoginResponse
@@ -187,10 +187,10 @@ abstract mixin class _$LoginResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'access_token') String accessToken,
-      @JsonKey(name: 'refresh_token') String refreshToken,
-      @JsonKey(name: 'expires_in') int expiresIn,
-      @JsonKey(name: 'session_id') String sessionId});
+      {@JsonKey(name: 'accessToken') String accessToken,
+      @JsonKey(name: 'refreshToken') String refreshToken,
+      @JsonKey(name: 'expiresIn') int expiresIn,
+      @JsonKey(name: 'sessionId') String sessionId});
 }
 
 /// @nodoc
