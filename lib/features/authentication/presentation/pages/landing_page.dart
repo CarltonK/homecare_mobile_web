@@ -291,7 +291,7 @@ class GoogleSignInWidget extends StatelessWidget {
         child: Container(
           height: Responsive.getProportionalHeight(context, 50),
           padding: EdgeInsets.symmetric(
-            horizontal: Responsive.getProportionalWidth(context, 60),
+            horizontal: Responsive.getProportionalWidth(context, 10),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -301,7 +301,7 @@ class GoogleSignInWidget extends StatelessWidget {
                 height: Responsive.getProportionalHeight(context, 18),
                 width: Responsive.getProportionalWidth(context, 18),
               ),
-              SizedBox(width: Responsive.getProportionalWidth(context, 18)),
+              SizedBox(width: Responsive.getProportionalWidth(context, 6)),
               Text('Continue with Google', style: kNormalBlack),
             ],
           ),
