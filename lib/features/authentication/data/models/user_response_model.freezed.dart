@@ -19,8 +19,6 @@ mixin _$UserResponseModel {
   User get user;
   @JsonKey(name: 'security')
   Security get security;
-  @JsonKey(name: 'app_metadata')
-  List<dynamic> get appMetadata;
 
   /// Create a copy of UserResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -40,19 +38,16 @@ mixin _$UserResponseModel {
             other is UserResponseModel &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.security, security) ||
-                other.security == security) &&
-            const DeepCollectionEquality()
-                .equals(other.appMetadata, appMetadata));
+                other.security == security));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, user, security,
-      const DeepCollectionEquality().hash(appMetadata));
+  int get hashCode => Object.hash(runtimeType, user, security);
 
   @override
   String toString() {
-    return 'UserResponseModel(user: $user, security: $security, appMetadata: $appMetadata)';
+    return 'UserResponseModel(user: $user, security: $security)';
   }
 }
 
@@ -64,8 +59,7 @@ abstract mixin class $UserResponseModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'user') User user,
-      @JsonKey(name: 'security') Security security,
-      @JsonKey(name: 'app_metadata') List<dynamic> appMetadata});
+      @JsonKey(name: 'security') Security security});
 
   $UserCopyWith<$Res> get user;
   $SecurityCopyWith<$Res> get security;
@@ -86,7 +80,6 @@ class _$UserResponseModelCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
     Object? security = null,
-    Object? appMetadata = null,
   }) {
     return _then(_self.copyWith(
       user: null == user
@@ -97,10 +90,6 @@ class _$UserResponseModelCopyWithImpl<$Res>
           ? _self.security
           : security // ignore: cast_nullable_to_non_nullable
               as Security,
-      appMetadata: null == appMetadata
-          ? _self.appMetadata
-          : appMetadata // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
     ));
   }
 
@@ -130,9 +119,7 @@ class _$UserResponseModelCopyWithImpl<$Res>
 class _UserResponseModel implements UserResponseModel {
   const _UserResponseModel(
       {@JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'security') required this.security,
-      @JsonKey(name: 'app_metadata') required final List<dynamic> appMetadata})
-      : _appMetadata = appMetadata;
+      @JsonKey(name: 'security') required this.security});
   factory _UserResponseModel.fromJson(Map<String, dynamic> json) =>
       _$UserResponseModelFromJson(json);
 
@@ -142,14 +129,6 @@ class _UserResponseModel implements UserResponseModel {
   @override
   @JsonKey(name: 'security')
   final Security security;
-  final List<dynamic> _appMetadata;
-  @override
-  @JsonKey(name: 'app_metadata')
-  List<dynamic> get appMetadata {
-    if (_appMetadata is EqualUnmodifiableListView) return _appMetadata;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_appMetadata);
-  }
 
   /// Create a copy of UserResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -173,19 +152,16 @@ class _UserResponseModel implements UserResponseModel {
             other is _UserResponseModel &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.security, security) ||
-                other.security == security) &&
-            const DeepCollectionEquality()
-                .equals(other._appMetadata, _appMetadata));
+                other.security == security));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, user, security,
-      const DeepCollectionEquality().hash(_appMetadata));
+  int get hashCode => Object.hash(runtimeType, user, security);
 
   @override
   String toString() {
-    return 'UserResponseModel(user: $user, security: $security, appMetadata: $appMetadata)';
+    return 'UserResponseModel(user: $user, security: $security)';
   }
 }
 
@@ -199,8 +175,7 @@ abstract mixin class _$UserResponseModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'user') User user,
-      @JsonKey(name: 'security') Security security,
-      @JsonKey(name: 'app_metadata') List<dynamic> appMetadata});
+      @JsonKey(name: 'security') Security security});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -223,7 +198,6 @@ class __$UserResponseModelCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
     Object? security = null,
-    Object? appMetadata = null,
   }) {
     return _then(_UserResponseModel(
       user: null == user
@@ -234,10 +208,6 @@ class __$UserResponseModelCopyWithImpl<$Res>
           ? _self.security
           : security // ignore: cast_nullable_to_non_nullable
               as Security,
-      appMetadata: null == appMetadata
-          ? _self._appMetadata
-          : appMetadata // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
     ));
   }
 
@@ -264,11 +234,11 @@ class __$UserResponseModelCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$Security {
-  @JsonKey(name: 'mfa_enabled')
+  @JsonKey(name: 'mfaEnabled')
   bool get mfaEnabled;
-  @JsonKey(name: 'mfa_methods')
+  @JsonKey(name: 'mfaMethods')
   List<dynamic> get mfaMethods;
-  @JsonKey(name: 'active_sessions')
+  @JsonKey(name: 'activeSessions')
   List<ActiveSession> get activeSessions;
 
   /// Create a copy of Security
@@ -314,9 +284,9 @@ abstract mixin class $SecurityCopyWith<$Res> {
       _$SecurityCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'mfa_enabled') bool mfaEnabled,
-      @JsonKey(name: 'mfa_methods') List<dynamic> mfaMethods,
-      @JsonKey(name: 'active_sessions') List<ActiveSession> activeSessions});
+      {@JsonKey(name: 'mfaEnabled') bool mfaEnabled,
+      @JsonKey(name: 'mfaMethods') List<dynamic> mfaMethods,
+      @JsonKey(name: 'activeSessions') List<ActiveSession> activeSessions});
 }
 
 /// @nodoc
@@ -356,9 +326,9 @@ class _$SecurityCopyWithImpl<$Res> implements $SecurityCopyWith<$Res> {
 @JsonSerializable()
 class _Security implements Security {
   const _Security(
-      {@JsonKey(name: 'mfa_enabled') required this.mfaEnabled,
-      @JsonKey(name: 'mfa_methods') required final List<dynamic> mfaMethods,
-      @JsonKey(name: 'active_sessions')
+      {@JsonKey(name: 'mfaEnabled') required this.mfaEnabled,
+      @JsonKey(name: 'mfaMethods') required final List<dynamic> mfaMethods,
+      @JsonKey(name: 'activeSessions')
       required final List<ActiveSession> activeSessions})
       : _mfaMethods = mfaMethods,
         _activeSessions = activeSessions;
@@ -366,11 +336,11 @@ class _Security implements Security {
       _$SecurityFromJson(json);
 
   @override
-  @JsonKey(name: 'mfa_enabled')
+  @JsonKey(name: 'mfaEnabled')
   final bool mfaEnabled;
   final List<dynamic> _mfaMethods;
   @override
-  @JsonKey(name: 'mfa_methods')
+  @JsonKey(name: 'mfaMethods')
   List<dynamic> get mfaMethods {
     if (_mfaMethods is EqualUnmodifiableListView) return _mfaMethods;
     // ignore: implicit_dynamic_type
@@ -379,7 +349,7 @@ class _Security implements Security {
 
   final List<ActiveSession> _activeSessions;
   @override
-  @JsonKey(name: 'active_sessions')
+  @JsonKey(name: 'activeSessions')
   List<ActiveSession> get activeSessions {
     if (_activeSessions is EqualUnmodifiableListView) return _activeSessions;
     // ignore: implicit_dynamic_type
@@ -436,9 +406,9 @@ abstract mixin class _$SecurityCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'mfa_enabled') bool mfaEnabled,
-      @JsonKey(name: 'mfa_methods') List<dynamic> mfaMethods,
-      @JsonKey(name: 'active_sessions') List<ActiveSession> activeSessions});
+      {@JsonKey(name: 'mfaEnabled') bool mfaEnabled,
+      @JsonKey(name: 'mfaMethods') List<dynamic> mfaMethods,
+      @JsonKey(name: 'activeSessions') List<ActiveSession> activeSessions});
 }
 
 /// @nodoc
@@ -478,13 +448,15 @@ class __$SecurityCopyWithImpl<$Res> implements _$SecurityCopyWith<$Res> {
 mixin _$ActiveSession {
   @JsonKey(name: 'id')
   int get id;
-  @JsonKey(name: 'device')
-  Device get device;
-  @JsonKey(name: 'ip_address')
-  String get ipAddress;
-  @JsonKey(name: 'created_at')
+  @JsonKey(name: 'metadata')
+  Metadata get metadata;
+  @JsonKey(name: 'createdAt')
   DateTime get createdAt;
-  @JsonKey(name: 'last_activity')
+  @JsonKey(name: 'device')
+  Device? get device;
+  @JsonKey(name: 'ip_address')
+  String? get ipAddress;
+  @JsonKey(name: 'lastActivityAt')
   dynamic get lastActivity;
 
   /// Create a copy of ActiveSession
@@ -504,23 +476,25 @@ mixin _$ActiveSession {
         (other.runtimeType == runtimeType &&
             other is ActiveSession &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.metadata, metadata) ||
+                other.metadata == metadata) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.device, device) || other.device == device) &&
             (identical(other.ipAddress, ipAddress) ||
                 other.ipAddress == ipAddress) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
             const DeepCollectionEquality()
                 .equals(other.lastActivity, lastActivity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, device, ipAddress, createdAt,
-      const DeepCollectionEquality().hash(lastActivity));
+  int get hashCode => Object.hash(runtimeType, id, metadata, createdAt, device,
+      ipAddress, const DeepCollectionEquality().hash(lastActivity));
 
   @override
   String toString() {
-    return 'ActiveSession(id: $id, device: $device, ipAddress: $ipAddress, createdAt: $createdAt, lastActivity: $lastActivity)';
+    return 'ActiveSession(id: $id, metadata: $metadata, createdAt: $createdAt, device: $device, ipAddress: $ipAddress, lastActivity: $lastActivity)';
   }
 }
 
@@ -532,12 +506,14 @@ abstract mixin class $ActiveSessionCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'device') Device device,
-      @JsonKey(name: 'ip_address') String ipAddress,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'last_activity') dynamic lastActivity});
+      @JsonKey(name: 'metadata') Metadata metadata,
+      @JsonKey(name: 'createdAt') DateTime createdAt,
+      @JsonKey(name: 'device') Device? device,
+      @JsonKey(name: 'ip_address') String? ipAddress,
+      @JsonKey(name: 'lastActivityAt') dynamic lastActivity});
 
-  $DeviceCopyWith<$Res> get device;
+  $MetadataCopyWith<$Res> get metadata;
+  $DeviceCopyWith<$Res>? get device;
 }
 
 /// @nodoc
@@ -554,9 +530,10 @@ class _$ActiveSessionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? device = null,
-    Object? ipAddress = null,
+    Object? metadata = null,
     Object? createdAt = null,
+    Object? device = freezed,
+    Object? ipAddress = freezed,
     Object? lastActivity = freezed,
   }) {
     return _then(_self.copyWith(
@@ -564,18 +541,22 @@ class _$ActiveSessionCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      device: null == device
-          ? _self.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as Device,
-      ipAddress: null == ipAddress
-          ? _self.ipAddress
-          : ipAddress // ignore: cast_nullable_to_non_nullable
-              as String,
+      metadata: null == metadata
+          ? _self.metadata
+          : metadata // ignore: cast_nullable_to_non_nullable
+              as Metadata,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      device: freezed == device
+          ? _self.device
+          : device // ignore: cast_nullable_to_non_nullable
+              as Device?,
+      ipAddress: freezed == ipAddress
+          ? _self.ipAddress
+          : ipAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
       lastActivity: freezed == lastActivity
           ? _self.lastActivity
           : lastActivity // ignore: cast_nullable_to_non_nullable
@@ -587,8 +568,22 @@ class _$ActiveSessionCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $DeviceCopyWith<$Res> get device {
-    return $DeviceCopyWith<$Res>(_self.device, (value) {
+  $MetadataCopyWith<$Res> get metadata {
+    return $MetadataCopyWith<$Res>(_self.metadata, (value) {
+      return _then(_self.copyWith(metadata: value));
+    });
+  }
+
+  /// Create a copy of ActiveSession
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeviceCopyWith<$Res>? get device {
+    if (_self.device == null) {
+      return null;
+    }
+
+    return $DeviceCopyWith<$Res>(_self.device!, (value) {
       return _then(_self.copyWith(device: value));
     });
   }
@@ -599,10 +594,11 @@ class _$ActiveSessionCopyWithImpl<$Res>
 class _ActiveSession implements ActiveSession {
   const _ActiveSession(
       {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'device') required this.device,
-      @JsonKey(name: 'ip_address') required this.ipAddress,
-      @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'last_activity') this.lastActivity});
+      @JsonKey(name: 'metadata') required this.metadata,
+      @JsonKey(name: 'createdAt') required this.createdAt,
+      @JsonKey(name: 'device') this.device,
+      @JsonKey(name: 'ip_address') this.ipAddress,
+      @JsonKey(name: 'lastActivityAt') this.lastActivity});
   factory _ActiveSession.fromJson(Map<String, dynamic> json) =>
       _$ActiveSessionFromJson(json);
 
@@ -610,16 +606,19 @@ class _ActiveSession implements ActiveSession {
   @JsonKey(name: 'id')
   final int id;
   @override
-  @JsonKey(name: 'device')
-  final Device device;
+  @JsonKey(name: 'metadata')
+  final Metadata metadata;
   @override
-  @JsonKey(name: 'ip_address')
-  final String ipAddress;
-  @override
-  @JsonKey(name: 'created_at')
+  @JsonKey(name: 'createdAt')
   final DateTime createdAt;
   @override
-  @JsonKey(name: 'last_activity')
+  @JsonKey(name: 'device')
+  final Device? device;
+  @override
+  @JsonKey(name: 'ip_address')
+  final String? ipAddress;
+  @override
+  @JsonKey(name: 'lastActivityAt')
   final dynamic lastActivity;
 
   /// Create a copy of ActiveSession
@@ -643,23 +642,25 @@ class _ActiveSession implements ActiveSession {
         (other.runtimeType == runtimeType &&
             other is _ActiveSession &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.metadata, metadata) ||
+                other.metadata == metadata) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.device, device) || other.device == device) &&
             (identical(other.ipAddress, ipAddress) ||
                 other.ipAddress == ipAddress) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
             const DeepCollectionEquality()
                 .equals(other.lastActivity, lastActivity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, device, ipAddress, createdAt,
-      const DeepCollectionEquality().hash(lastActivity));
+  int get hashCode => Object.hash(runtimeType, id, metadata, createdAt, device,
+      ipAddress, const DeepCollectionEquality().hash(lastActivity));
 
   @override
   String toString() {
-    return 'ActiveSession(id: $id, device: $device, ipAddress: $ipAddress, createdAt: $createdAt, lastActivity: $lastActivity)';
+    return 'ActiveSession(id: $id, metadata: $metadata, createdAt: $createdAt, device: $device, ipAddress: $ipAddress, lastActivity: $lastActivity)';
   }
 }
 
@@ -673,13 +674,16 @@ abstract mixin class _$ActiveSessionCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'device') Device device,
-      @JsonKey(name: 'ip_address') String ipAddress,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'last_activity') dynamic lastActivity});
+      @JsonKey(name: 'metadata') Metadata metadata,
+      @JsonKey(name: 'createdAt') DateTime createdAt,
+      @JsonKey(name: 'device') Device? device,
+      @JsonKey(name: 'ip_address') String? ipAddress,
+      @JsonKey(name: 'lastActivityAt') dynamic lastActivity});
 
   @override
-  $DeviceCopyWith<$Res> get device;
+  $MetadataCopyWith<$Res> get metadata;
+  @override
+  $DeviceCopyWith<$Res>? get device;
 }
 
 /// @nodoc
@@ -696,9 +700,10 @@ class __$ActiveSessionCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? device = null,
-    Object? ipAddress = null,
+    Object? metadata = null,
     Object? createdAt = null,
+    Object? device = freezed,
+    Object? ipAddress = freezed,
     Object? lastActivity = freezed,
   }) {
     return _then(_ActiveSession(
@@ -706,18 +711,22 @@ class __$ActiveSessionCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      device: null == device
-          ? _self.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as Device,
-      ipAddress: null == ipAddress
-          ? _self.ipAddress
-          : ipAddress // ignore: cast_nullable_to_non_nullable
-              as String,
+      metadata: null == metadata
+          ? _self.metadata
+          : metadata // ignore: cast_nullable_to_non_nullable
+              as Metadata,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      device: freezed == device
+          ? _self.device
+          : device // ignore: cast_nullable_to_non_nullable
+              as Device?,
+      ipAddress: freezed == ipAddress
+          ? _self.ipAddress
+          : ipAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
       lastActivity: freezed == lastActivity
           ? _self.lastActivity
           : lastActivity // ignore: cast_nullable_to_non_nullable
@@ -729,10 +738,192 @@ class __$ActiveSessionCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $DeviceCopyWith<$Res> get device {
-    return $DeviceCopyWith<$Res>(_self.device, (value) {
+  $MetadataCopyWith<$Res> get metadata {
+    return $MetadataCopyWith<$Res>(_self.metadata, (value) {
+      return _then(_self.copyWith(metadata: value));
+    });
+  }
+
+  /// Create a copy of ActiveSession
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeviceCopyWith<$Res>? get device {
+    if (_self.device == null) {
+      return null;
+    }
+
+    return $DeviceCopyWith<$Res>(_self.device!, (value) {
       return _then(_self.copyWith(device: value));
     });
+  }
+}
+
+/// @nodoc
+mixin _$Metadata {
+  @JsonKey(name: 'ipAddress')
+  String get ipAddress;
+  @JsonKey(name: 'userAgent')
+  String get userAgent;
+
+  /// Create a copy of Metadata
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $MetadataCopyWith<Metadata> get copyWith =>
+      _$MetadataCopyWithImpl<Metadata>(this as Metadata, _$identity);
+
+  /// Serializes this Metadata to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Metadata &&
+            (identical(other.ipAddress, ipAddress) ||
+                other.ipAddress == ipAddress) &&
+            (identical(other.userAgent, userAgent) ||
+                other.userAgent == userAgent));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, ipAddress, userAgent);
+
+  @override
+  String toString() {
+    return 'Metadata(ipAddress: $ipAddress, userAgent: $userAgent)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $MetadataCopyWith<$Res> {
+  factory $MetadataCopyWith(Metadata value, $Res Function(Metadata) _then) =
+      _$MetadataCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ipAddress') String ipAddress,
+      @JsonKey(name: 'userAgent') String userAgent});
+}
+
+/// @nodoc
+class _$MetadataCopyWithImpl<$Res> implements $MetadataCopyWith<$Res> {
+  _$MetadataCopyWithImpl(this._self, this._then);
+
+  final Metadata _self;
+  final $Res Function(Metadata) _then;
+
+  /// Create a copy of Metadata
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ipAddress = null,
+    Object? userAgent = null,
+  }) {
+    return _then(_self.copyWith(
+      ipAddress: null == ipAddress
+          ? _self.ipAddress
+          : ipAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      userAgent: null == userAgent
+          ? _self.userAgent
+          : userAgent // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _Metadata implements Metadata {
+  const _Metadata(
+      {@JsonKey(name: 'ipAddress') required this.ipAddress,
+      @JsonKey(name: 'userAgent') required this.userAgent});
+  factory _Metadata.fromJson(Map<String, dynamic> json) =>
+      _$MetadataFromJson(json);
+
+  @override
+  @JsonKey(name: 'ipAddress')
+  final String ipAddress;
+  @override
+  @JsonKey(name: 'userAgent')
+  final String userAgent;
+
+  /// Create a copy of Metadata
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MetadataCopyWith<_Metadata> get copyWith =>
+      __$MetadataCopyWithImpl<_Metadata>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MetadataToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Metadata &&
+            (identical(other.ipAddress, ipAddress) ||
+                other.ipAddress == ipAddress) &&
+            (identical(other.userAgent, userAgent) ||
+                other.userAgent == userAgent));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, ipAddress, userAgent);
+
+  @override
+  String toString() {
+    return 'Metadata(ipAddress: $ipAddress, userAgent: $userAgent)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$MetadataCopyWith<$Res>
+    implements $MetadataCopyWith<$Res> {
+  factory _$MetadataCopyWith(_Metadata value, $Res Function(_Metadata) _then) =
+      __$MetadataCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'ipAddress') String ipAddress,
+      @JsonKey(name: 'userAgent') String userAgent});
+}
+
+/// @nodoc
+class __$MetadataCopyWithImpl<$Res> implements _$MetadataCopyWith<$Res> {
+  __$MetadataCopyWithImpl(this._self, this._then);
+
+  final _Metadata _self;
+  final $Res Function(_Metadata) _then;
+
+  /// Create a copy of Metadata
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? ipAddress = null,
+    Object? userAgent = null,
+  }) {
+    return _then(_Metadata(
+      ipAddress: null == ipAddress
+          ? _self.ipAddress
+          : ipAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      userAgent: null == userAgent
+          ? _self.userAgent
+          : userAgent // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
@@ -926,24 +1117,24 @@ mixin _$User {
   int get id;
   @JsonKey(name: 'email')
   String get email;
-  @JsonKey(name: 'first_name')
+  @JsonKey(name: 'firstName')
   String? get firstName;
-  @JsonKey(name: 'last_name')
+  @JsonKey(name: 'lastName')
   String? get lastName;
-  @JsonKey(name: 'email_verified')
+  @JsonKey(name: 'emailVerified')
   bool get emailVerified;
+  @JsonKey(name: 'mfaEnabled')
+  bool get mfaEnabled;
+  @JsonKey(name: 'createdAt')
+  DateTime get createdAt;
+  @JsonKey(name: 'lastLogin')
+  DateTime get lastLogin;
   @JsonKey(name: 'phone')
   String? get phone;
-  @JsonKey(name: 'phone_verified')
-  bool get phoneVerified;
-  @JsonKey(name: 'mfa_enabled')
-  bool get mfaEnabled;
-  @JsonKey(name: 'created_at')
-  DateTime get createdAt;
-  @JsonKey(name: 'last_login')
-  DateTime get lastLogin;
+  @JsonKey(name: 'phoneVerified')
+  bool? get phoneVerified;
   @JsonKey(name: 'metadata')
-  Metadata get metadata;
+  Metadata? get metadata;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -968,15 +1159,15 @@ mixin _$User {
                 other.lastName == lastName) &&
             (identical(other.emailVerified, emailVerified) ||
                 other.emailVerified == emailVerified) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.phoneVerified, phoneVerified) ||
-                other.phoneVerified == phoneVerified) &&
             (identical(other.mfaEnabled, mfaEnabled) ||
                 other.mfaEnabled == mfaEnabled) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.lastLogin, lastLogin) ||
                 other.lastLogin == lastLogin) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.phoneVerified, phoneVerified) ||
+                other.phoneVerified == phoneVerified) &&
             (identical(other.metadata, metadata) ||
                 other.metadata == metadata));
   }
@@ -990,16 +1181,16 @@ mixin _$User {
       firstName,
       lastName,
       emailVerified,
-      phone,
-      phoneVerified,
       mfaEnabled,
       createdAt,
       lastLogin,
+      phone,
+      phoneVerified,
       metadata);
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, firstName: $firstName, lastName: $lastName, emailVerified: $emailVerified, phone: $phone, phoneVerified: $phoneVerified, mfaEnabled: $mfaEnabled, createdAt: $createdAt, lastLogin: $lastLogin, metadata: $metadata)';
+    return 'User(id: $id, email: $email, firstName: $firstName, lastName: $lastName, emailVerified: $emailVerified, mfaEnabled: $mfaEnabled, createdAt: $createdAt, lastLogin: $lastLogin, phone: $phone, phoneVerified: $phoneVerified, metadata: $metadata)';
   }
 }
 
@@ -1011,17 +1202,17 @@ abstract mixin class $UserCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'email_verified') bool emailVerified,
+      @JsonKey(name: 'firstName') String? firstName,
+      @JsonKey(name: 'lastName') String? lastName,
+      @JsonKey(name: 'emailVerified') bool emailVerified,
+      @JsonKey(name: 'mfaEnabled') bool mfaEnabled,
+      @JsonKey(name: 'createdAt') DateTime createdAt,
+      @JsonKey(name: 'lastLogin') DateTime lastLogin,
       @JsonKey(name: 'phone') String? phone,
-      @JsonKey(name: 'phone_verified') bool phoneVerified,
-      @JsonKey(name: 'mfa_enabled') bool mfaEnabled,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'last_login') DateTime lastLogin,
-      @JsonKey(name: 'metadata') Metadata metadata});
+      @JsonKey(name: 'phoneVerified') bool? phoneVerified,
+      @JsonKey(name: 'metadata') Metadata? metadata});
 
-  $MetadataCopyWith<$Res> get metadata;
+  $MetadataCopyWith<$Res>? get metadata;
 }
 
 /// @nodoc
@@ -1041,12 +1232,12 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? emailVerified = null,
-    Object? phone = freezed,
-    Object? phoneVerified = null,
     Object? mfaEnabled = null,
     Object? createdAt = null,
     Object? lastLogin = null,
-    Object? metadata = null,
+    Object? phone = freezed,
+    Object? phoneVerified = freezed,
+    Object? metadata = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -1069,14 +1260,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _self.emailVerified
           : emailVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      phone: freezed == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneVerified: null == phoneVerified
-          ? _self.phoneVerified
-          : phoneVerified // ignore: cast_nullable_to_non_nullable
-              as bool,
       mfaEnabled: null == mfaEnabled
           ? _self.mfaEnabled
           : mfaEnabled // ignore: cast_nullable_to_non_nullable
@@ -1089,10 +1272,18 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _self.lastLogin
           : lastLogin // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      metadata: null == metadata
+      phone: freezed == phone
+          ? _self.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneVerified: freezed == phoneVerified
+          ? _self.phoneVerified
+          : phoneVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      metadata: freezed == metadata
           ? _self.metadata
           : metadata // ignore: cast_nullable_to_non_nullable
-              as Metadata,
+              as Metadata?,
     ));
   }
 
@@ -1100,8 +1291,12 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MetadataCopyWith<$Res> get metadata {
-    return $MetadataCopyWith<$Res>(_self.metadata, (value) {
+  $MetadataCopyWith<$Res>? get metadata {
+    if (_self.metadata == null) {
+      return null;
+    }
+
+    return $MetadataCopyWith<$Res>(_self.metadata!, (value) {
       return _then(_self.copyWith(metadata: value));
     });
   }
@@ -1113,15 +1308,15 @@ class _User implements User {
   const _User(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'email') required this.email,
-      @JsonKey(name: 'first_name') this.firstName,
-      @JsonKey(name: 'last_name') this.lastName,
-      @JsonKey(name: 'email_verified') required this.emailVerified,
+      @JsonKey(name: 'firstName') this.firstName,
+      @JsonKey(name: 'lastName') this.lastName,
+      @JsonKey(name: 'emailVerified') required this.emailVerified,
+      @JsonKey(name: 'mfaEnabled') required this.mfaEnabled,
+      @JsonKey(name: 'createdAt') required this.createdAt,
+      @JsonKey(name: 'lastLogin') required this.lastLogin,
       @JsonKey(name: 'phone') this.phone,
-      @JsonKey(name: 'phone_verified') required this.phoneVerified,
-      @JsonKey(name: 'mfa_enabled') required this.mfaEnabled,
-      @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'last_login') required this.lastLogin,
-      @JsonKey(name: 'metadata') required this.metadata});
+      @JsonKey(name: 'phoneVerified') this.phoneVerified,
+      @JsonKey(name: 'metadata') this.metadata});
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   @override
@@ -1131,32 +1326,32 @@ class _User implements User {
   @JsonKey(name: 'email')
   final String email;
   @override
-  @JsonKey(name: 'first_name')
+  @JsonKey(name: 'firstName')
   final String? firstName;
   @override
-  @JsonKey(name: 'last_name')
+  @JsonKey(name: 'lastName')
   final String? lastName;
   @override
-  @JsonKey(name: 'email_verified')
+  @JsonKey(name: 'emailVerified')
   final bool emailVerified;
+  @override
+  @JsonKey(name: 'mfaEnabled')
+  final bool mfaEnabled;
+  @override
+  @JsonKey(name: 'createdAt')
+  final DateTime createdAt;
+  @override
+  @JsonKey(name: 'lastLogin')
+  final DateTime lastLogin;
   @override
   @JsonKey(name: 'phone')
   final String? phone;
   @override
-  @JsonKey(name: 'phone_verified')
-  final bool phoneVerified;
-  @override
-  @JsonKey(name: 'mfa_enabled')
-  final bool mfaEnabled;
-  @override
-  @JsonKey(name: 'created_at')
-  final DateTime createdAt;
-  @override
-  @JsonKey(name: 'last_login')
-  final DateTime lastLogin;
+  @JsonKey(name: 'phoneVerified')
+  final bool? phoneVerified;
   @override
   @JsonKey(name: 'metadata')
-  final Metadata metadata;
+  final Metadata? metadata;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -1186,15 +1381,15 @@ class _User implements User {
                 other.lastName == lastName) &&
             (identical(other.emailVerified, emailVerified) ||
                 other.emailVerified == emailVerified) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.phoneVerified, phoneVerified) ||
-                other.phoneVerified == phoneVerified) &&
             (identical(other.mfaEnabled, mfaEnabled) ||
                 other.mfaEnabled == mfaEnabled) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.lastLogin, lastLogin) ||
                 other.lastLogin == lastLogin) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.phoneVerified, phoneVerified) ||
+                other.phoneVerified == phoneVerified) &&
             (identical(other.metadata, metadata) ||
                 other.metadata == metadata));
   }
@@ -1208,16 +1403,16 @@ class _User implements User {
       firstName,
       lastName,
       emailVerified,
-      phone,
-      phoneVerified,
       mfaEnabled,
       createdAt,
       lastLogin,
+      phone,
+      phoneVerified,
       metadata);
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, firstName: $firstName, lastName: $lastName, emailVerified: $emailVerified, phone: $phone, phoneVerified: $phoneVerified, mfaEnabled: $mfaEnabled, createdAt: $createdAt, lastLogin: $lastLogin, metadata: $metadata)';
+    return 'User(id: $id, email: $email, firstName: $firstName, lastName: $lastName, emailVerified: $emailVerified, mfaEnabled: $mfaEnabled, createdAt: $createdAt, lastLogin: $lastLogin, phone: $phone, phoneVerified: $phoneVerified, metadata: $metadata)';
   }
 }
 
@@ -1230,18 +1425,18 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName,
-      @JsonKey(name: 'email_verified') bool emailVerified,
+      @JsonKey(name: 'firstName') String? firstName,
+      @JsonKey(name: 'lastName') String? lastName,
+      @JsonKey(name: 'emailVerified') bool emailVerified,
+      @JsonKey(name: 'mfaEnabled') bool mfaEnabled,
+      @JsonKey(name: 'createdAt') DateTime createdAt,
+      @JsonKey(name: 'lastLogin') DateTime lastLogin,
       @JsonKey(name: 'phone') String? phone,
-      @JsonKey(name: 'phone_verified') bool phoneVerified,
-      @JsonKey(name: 'mfa_enabled') bool mfaEnabled,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'last_login') DateTime lastLogin,
-      @JsonKey(name: 'metadata') Metadata metadata});
+      @JsonKey(name: 'phoneVerified') bool? phoneVerified,
+      @JsonKey(name: 'metadata') Metadata? metadata});
 
   @override
-  $MetadataCopyWith<$Res> get metadata;
+  $MetadataCopyWith<$Res>? get metadata;
 }
 
 /// @nodoc
@@ -1261,12 +1456,12 @@ class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? emailVerified = null,
-    Object? phone = freezed,
-    Object? phoneVerified = null,
     Object? mfaEnabled = null,
     Object? createdAt = null,
     Object? lastLogin = null,
-    Object? metadata = null,
+    Object? phone = freezed,
+    Object? phoneVerified = freezed,
+    Object? metadata = freezed,
   }) {
     return _then(_User(
       id: null == id
@@ -1289,14 +1484,6 @@ class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
           ? _self.emailVerified
           : emailVerified // ignore: cast_nullable_to_non_nullable
               as bool,
-      phone: freezed == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneVerified: null == phoneVerified
-          ? _self.phoneVerified
-          : phoneVerified // ignore: cast_nullable_to_non_nullable
-              as bool,
       mfaEnabled: null == mfaEnabled
           ? _self.mfaEnabled
           : mfaEnabled // ignore: cast_nullable_to_non_nullable
@@ -1309,10 +1496,18 @@ class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
           ? _self.lastLogin
           : lastLogin // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      metadata: null == metadata
+      phone: freezed == phone
+          ? _self.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneVerified: freezed == phoneVerified
+          ? _self.phoneVerified
+          : phoneVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      metadata: freezed == metadata
           ? _self.metadata
           : metadata // ignore: cast_nullable_to_non_nullable
-              as Metadata,
+              as Metadata?,
     ));
   }
 
@@ -1320,434 +1515,14 @@ class __$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MetadataCopyWith<$Res> get metadata {
-    return $MetadataCopyWith<$Res>(_self.metadata, (value) {
+  $MetadataCopyWith<$Res>? get metadata {
+    if (_self.metadata == null) {
+      return null;
+    }
+
+    return $MetadataCopyWith<$Res>(_self.metadata!, (value) {
       return _then(_self.copyWith(metadata: value));
     });
-  }
-}
-
-/// @nodoc
-mixin _$Metadata {
-  @JsonKey(name: 'registration')
-  Registration get registration;
-
-  /// Create a copy of Metadata
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $MetadataCopyWith<Metadata> get copyWith =>
-      _$MetadataCopyWithImpl<Metadata>(this as Metadata, _$identity);
-
-  /// Serializes this Metadata to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is Metadata &&
-            (identical(other.registration, registration) ||
-                other.registration == registration));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, registration);
-
-  @override
-  String toString() {
-    return 'Metadata(registration: $registration)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $MetadataCopyWith<$Res> {
-  factory $MetadataCopyWith(Metadata value, $Res Function(Metadata) _then) =
-      _$MetadataCopyWithImpl;
-  @useResult
-  $Res call({@JsonKey(name: 'registration') Registration registration});
-
-  $RegistrationCopyWith<$Res> get registration;
-}
-
-/// @nodoc
-class _$MetadataCopyWithImpl<$Res> implements $MetadataCopyWith<$Res> {
-  _$MetadataCopyWithImpl(this._self, this._then);
-
-  final Metadata _self;
-  final $Res Function(Metadata) _then;
-
-  /// Create a copy of Metadata
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? registration = null,
-  }) {
-    return _then(_self.copyWith(
-      registration: null == registration
-          ? _self.registration
-          : registration // ignore: cast_nullable_to_non_nullable
-              as Registration,
-    ));
-  }
-
-  /// Create a copy of Metadata
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RegistrationCopyWith<$Res> get registration {
-    return $RegistrationCopyWith<$Res>(_self.registration, (value) {
-      return _then(_self.copyWith(registration: value));
-    });
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _Metadata implements Metadata {
-  const _Metadata({@JsonKey(name: 'registration') required this.registration});
-  factory _Metadata.fromJson(Map<String, dynamic> json) =>
-      _$MetadataFromJson(json);
-
-  @override
-  @JsonKey(name: 'registration')
-  final Registration registration;
-
-  /// Create a copy of Metadata
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$MetadataCopyWith<_Metadata> get copyWith =>
-      __$MetadataCopyWithImpl<_Metadata>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$MetadataToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Metadata &&
-            (identical(other.registration, registration) ||
-                other.registration == registration));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, registration);
-
-  @override
-  String toString() {
-    return 'Metadata(registration: $registration)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$MetadataCopyWith<$Res>
-    implements $MetadataCopyWith<$Res> {
-  factory _$MetadataCopyWith(_Metadata value, $Res Function(_Metadata) _then) =
-      __$MetadataCopyWithImpl;
-  @override
-  @useResult
-  $Res call({@JsonKey(name: 'registration') Registration registration});
-
-  @override
-  $RegistrationCopyWith<$Res> get registration;
-}
-
-/// @nodoc
-class __$MetadataCopyWithImpl<$Res> implements _$MetadataCopyWith<$Res> {
-  __$MetadataCopyWithImpl(this._self, this._then);
-
-  final _Metadata _self;
-  final $Res Function(_Metadata) _then;
-
-  /// Create a copy of Metadata
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? registration = null,
-  }) {
-    return _then(_Metadata(
-      registration: null == registration
-          ? _self.registration
-          : registration // ignore: cast_nullable_to_non_nullable
-              as Registration,
-    ));
-  }
-
-  /// Create a copy of Metadata
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RegistrationCopyWith<$Res> get registration {
-    return $RegistrationCopyWith<$Res>(_self.registration, (value) {
-      return _then(_self.copyWith(registration: value));
-    });
-  }
-}
-
-/// @nodoc
-mixin _$Registration {
-  @JsonKey(name: 'ip')
-  String get ip;
-  @JsonKey(name: 'device')
-  String get device;
-  @JsonKey(name: 'browser')
-  String get browser;
-  @JsonKey(name: 'location')
-  String? get location;
-  @JsonKey(name: 'platform')
-  String get platform;
-  @JsonKey(name: 'timestamp')
-  DateTime get timestamp;
-
-  /// Create a copy of Registration
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $RegistrationCopyWith<Registration> get copyWith =>
-      _$RegistrationCopyWithImpl<Registration>(
-          this as Registration, _$identity);
-
-  /// Serializes this Registration to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is Registration &&
-            (identical(other.ip, ip) || other.ip == ip) &&
-            (identical(other.device, device) || other.device == device) &&
-            (identical(other.browser, browser) || other.browser == browser) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.platform, platform) ||
-                other.platform == platform) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, ip, device, browser, location, platform, timestamp);
-
-  @override
-  String toString() {
-    return 'Registration(ip: $ip, device: $device, browser: $browser, location: $location, platform: $platform, timestamp: $timestamp)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $RegistrationCopyWith<$Res> {
-  factory $RegistrationCopyWith(
-          Registration value, $Res Function(Registration) _then) =
-      _$RegistrationCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'ip') String ip,
-      @JsonKey(name: 'device') String device,
-      @JsonKey(name: 'browser') String browser,
-      @JsonKey(name: 'location') String? location,
-      @JsonKey(name: 'platform') String platform,
-      @JsonKey(name: 'timestamp') DateTime timestamp});
-}
-
-/// @nodoc
-class _$RegistrationCopyWithImpl<$Res> implements $RegistrationCopyWith<$Res> {
-  _$RegistrationCopyWithImpl(this._self, this._then);
-
-  final Registration _self;
-  final $Res Function(Registration) _then;
-
-  /// Create a copy of Registration
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? ip = null,
-    Object? device = null,
-    Object? browser = null,
-    Object? location = freezed,
-    Object? platform = null,
-    Object? timestamp = null,
-  }) {
-    return _then(_self.copyWith(
-      ip: null == ip
-          ? _self.ip
-          : ip // ignore: cast_nullable_to_non_nullable
-              as String,
-      device: null == device
-          ? _self.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as String,
-      browser: null == browser
-          ? _self.browser
-          : browser // ignore: cast_nullable_to_non_nullable
-              as String,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platform: null == platform
-          ? _self.platform
-          : platform // ignore: cast_nullable_to_non_nullable
-              as String,
-      timestamp: null == timestamp
-          ? _self.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _Registration implements Registration {
-  const _Registration(
-      {@JsonKey(name: 'ip') required this.ip,
-      @JsonKey(name: 'device') required this.device,
-      @JsonKey(name: 'browser') required this.browser,
-      @JsonKey(name: 'location') this.location,
-      @JsonKey(name: 'platform') required this.platform,
-      @JsonKey(name: 'timestamp') required this.timestamp});
-  factory _Registration.fromJson(Map<String, dynamic> json) =>
-      _$RegistrationFromJson(json);
-
-  @override
-  @JsonKey(name: 'ip')
-  final String ip;
-  @override
-  @JsonKey(name: 'device')
-  final String device;
-  @override
-  @JsonKey(name: 'browser')
-  final String browser;
-  @override
-  @JsonKey(name: 'location')
-  final String? location;
-  @override
-  @JsonKey(name: 'platform')
-  final String platform;
-  @override
-  @JsonKey(name: 'timestamp')
-  final DateTime timestamp;
-
-  /// Create a copy of Registration
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$RegistrationCopyWith<_Registration> get copyWith =>
-      __$RegistrationCopyWithImpl<_Registration>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$RegistrationToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Registration &&
-            (identical(other.ip, ip) || other.ip == ip) &&
-            (identical(other.device, device) || other.device == device) &&
-            (identical(other.browser, browser) || other.browser == browser) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.platform, platform) ||
-                other.platform == platform) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, ip, device, browser, location, platform, timestamp);
-
-  @override
-  String toString() {
-    return 'Registration(ip: $ip, device: $device, browser: $browser, location: $location, platform: $platform, timestamp: $timestamp)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$RegistrationCopyWith<$Res>
-    implements $RegistrationCopyWith<$Res> {
-  factory _$RegistrationCopyWith(
-          _Registration value, $Res Function(_Registration) _then) =
-      __$RegistrationCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'ip') String ip,
-      @JsonKey(name: 'device') String device,
-      @JsonKey(name: 'browser') String browser,
-      @JsonKey(name: 'location') String? location,
-      @JsonKey(name: 'platform') String platform,
-      @JsonKey(name: 'timestamp') DateTime timestamp});
-}
-
-/// @nodoc
-class __$RegistrationCopyWithImpl<$Res>
-    implements _$RegistrationCopyWith<$Res> {
-  __$RegistrationCopyWithImpl(this._self, this._then);
-
-  final _Registration _self;
-  final $Res Function(_Registration) _then;
-
-  /// Create a copy of Registration
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? ip = null,
-    Object? device = null,
-    Object? browser = null,
-    Object? location = freezed,
-    Object? platform = null,
-    Object? timestamp = null,
-  }) {
-    return _then(_Registration(
-      ip: null == ip
-          ? _self.ip
-          : ip // ignore: cast_nullable_to_non_nullable
-              as String,
-      device: null == device
-          ? _self.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as String,
-      browser: null == browser
-          ? _self.browser
-          : browser // ignore: cast_nullable_to_non_nullable
-              as String,
-      location: freezed == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platform: null == platform
-          ? _self.platform
-          : platform // ignore: cast_nullable_to_non_nullable
-              as String,
-      timestamp: null == timestamp
-          ? _self.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
   }
 }
 
