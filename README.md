@@ -1,3 +1,9 @@
+## Running the app
+```
+docker compose up
+```
+Once the container is confirmed to be running, the app can be accessed at http://localhost:8080
+
 ## Generate Models
 ```
 dart run build_runner build
