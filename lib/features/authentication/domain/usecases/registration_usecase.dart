@@ -7,14 +7,8 @@ class RegistrationUseCase {
 
   RegistrationUseCase(this.repository);
 
-  Future<Either<ResponseModel, AuthEntity>> call(
-      String username, String password,
-      {String? firstName, String? lastName}) {
-    return repository.register(
-      username,
-      password,
-      firstName ?? '',
-      lastName ?? '',
-    );
+  Future<Either<ResponseModel, RegistrationEntity>> call(
+      RegistrationRequest data) {
+    return repository.register(data);
   }
 }

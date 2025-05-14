@@ -97,9 +97,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
   Widget _buildRegistrationForm(BuildContext context, Size size) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is AuthSuccess) {
-          // Navigate to the dashboard
-          context.go('/dashboard');
+        if (state is RegistrationSuccess) {
+          final String path =
+              state.regEntity.requiresVerification ? '/' : '/dashboard';
+          context.go(path);
         } else if (state is AuthResponse) {
           late bool isSuccess = false;
           late String msg = 'Success';

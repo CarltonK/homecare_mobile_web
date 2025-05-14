@@ -10,6 +10,7 @@ abstract class ResponseModel with _$ResponseModel {
     @JsonKey(name: 'error') String? error,
     @JsonKey(name: 'message') String? message,
     @JsonKey(name: 'validation_errors') ValidationErrors? validationErrors,
+    @JsonKey(name: 'feedback') Feedback? feedback,
   }) = _ResponseModel;
 
   factory ResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -24,4 +25,15 @@ abstract class ValidationErrors with _$ValidationErrors {
 
   factory ValidationErrors.fromJson(Map<String, dynamic> json) =>
       _$ValidationErrorsFromJson(json);
+}
+
+@freezed
+abstract class Feedback with _$Feedback {
+  const factory Feedback({
+    @JsonKey(name: 'warning') required String warning,
+    @JsonKey(name: 'suggestions') required List<String> suggestions,
+  }) = _Feedback;
+
+  factory Feedback.fromJson(Map<String, dynamic> json) =>
+      _$FeedbackFromJson(json);
 }

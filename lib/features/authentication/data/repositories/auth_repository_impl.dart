@@ -22,16 +22,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<ResponseModel, AuthEntity>> register(String username,
-      String password, String firstName, String lastName) async {
+  Future<Either<ResponseModel, RegistrationEntity>> register(
+      RegistrationRequest data) async {
     try {
-      final response = await remoteDataSource.register(
-        username,
-        password,
-        firstName,
-        lastName,
-      );
-      return Right(AuthEntity.fromLoginResponse(response));
+      final response = await remoteDataSource.register(data);
+      return Right(RegistrationEntity.fromResponse(response));
     } catch (e) {
       if (e is ResponseModel) {
         return Left(e);

@@ -21,6 +21,8 @@ mixin _$ResponseModel {
   String? get message;
   @JsonKey(name: 'validation_errors')
   ValidationErrors? get validationErrors;
+  @JsonKey(name: 'feedback')
+  Feedback? get feedback;
 
   /// Create a copy of ResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -41,17 +43,19 @@ mixin _$ResponseModel {
             (identical(other.error, error) || other.error == error) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.validationErrors, validationErrors) ||
-                other.validationErrors == validationErrors));
+                other.validationErrors == validationErrors) &&
+            (identical(other.feedback, feedback) ||
+                other.feedback == feedback));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, error, message, validationErrors);
+      Object.hash(runtimeType, error, message, validationErrors, feedback);
 
   @override
   String toString() {
-    return 'ResponseModel(error: $error, message: $message, validationErrors: $validationErrors)';
+    return 'ResponseModel(error: $error, message: $message, validationErrors: $validationErrors, feedback: $feedback)';
   }
 }
 
@@ -64,9 +68,11 @@ abstract mixin class $ResponseModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'error') String? error,
       @JsonKey(name: 'message') String? message,
-      @JsonKey(name: 'validation_errors') ValidationErrors? validationErrors});
+      @JsonKey(name: 'validation_errors') ValidationErrors? validationErrors,
+      @JsonKey(name: 'feedback') Feedback? feedback});
 
   $ValidationErrorsCopyWith<$Res>? get validationErrors;
+  $FeedbackCopyWith<$Res>? get feedback;
 }
 
 /// @nodoc
@@ -85,6 +91,7 @@ class _$ResponseModelCopyWithImpl<$Res>
     Object? error = freezed,
     Object? message = freezed,
     Object? validationErrors = freezed,
+    Object? feedback = freezed,
   }) {
     return _then(_self.copyWith(
       error: freezed == error
@@ -99,6 +106,10 @@ class _$ResponseModelCopyWithImpl<$Res>
           ? _self.validationErrors
           : validationErrors // ignore: cast_nullable_to_non_nullable
               as ValidationErrors?,
+      feedback: freezed == feedback
+          ? _self.feedback
+          : feedback // ignore: cast_nullable_to_non_nullable
+              as Feedback?,
     ));
   }
 
@@ -115,6 +126,20 @@ class _$ResponseModelCopyWithImpl<$Res>
       return _then(_self.copyWith(validationErrors: value));
     });
   }
+
+  /// Create a copy of ResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FeedbackCopyWith<$Res>? get feedback {
+    if (_self.feedback == null) {
+      return null;
+    }
+
+    return $FeedbackCopyWith<$Res>(_self.feedback!, (value) {
+      return _then(_self.copyWith(feedback: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -124,7 +149,8 @@ class _ResponseModel implements ResponseModel {
   const _ResponseModel(
       {@JsonKey(name: 'error') this.error,
       @JsonKey(name: 'message') this.message,
-      @JsonKey(name: 'validation_errors') this.validationErrors});
+      @JsonKey(name: 'validation_errors') this.validationErrors,
+      @JsonKey(name: 'feedback') this.feedback});
   factory _ResponseModel.fromJson(Map<String, dynamic> json) =>
       _$ResponseModelFromJson(json);
 
@@ -137,6 +163,9 @@ class _ResponseModel implements ResponseModel {
   @override
   @JsonKey(name: 'validation_errors')
   final ValidationErrors? validationErrors;
+  @override
+  @JsonKey(name: 'feedback')
+  final Feedback? feedback;
 
   /// Create a copy of ResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -161,17 +190,19 @@ class _ResponseModel implements ResponseModel {
             (identical(other.error, error) || other.error == error) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.validationErrors, validationErrors) ||
-                other.validationErrors == validationErrors));
+                other.validationErrors == validationErrors) &&
+            (identical(other.feedback, feedback) ||
+                other.feedback == feedback));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, error, message, validationErrors);
+      Object.hash(runtimeType, error, message, validationErrors, feedback);
 
   @override
   String toString() {
-    return 'ResponseModel(error: $error, message: $message, validationErrors: $validationErrors)';
+    return 'ResponseModel(error: $error, message: $message, validationErrors: $validationErrors, feedback: $feedback)';
   }
 }
 
@@ -186,10 +217,13 @@ abstract mixin class _$ResponseModelCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'error') String? error,
       @JsonKey(name: 'message') String? message,
-      @JsonKey(name: 'validation_errors') ValidationErrors? validationErrors});
+      @JsonKey(name: 'validation_errors') ValidationErrors? validationErrors,
+      @JsonKey(name: 'feedback') Feedback? feedback});
 
   @override
   $ValidationErrorsCopyWith<$Res>? get validationErrors;
+  @override
+  $FeedbackCopyWith<$Res>? get feedback;
 }
 
 /// @nodoc
@@ -208,6 +242,7 @@ class __$ResponseModelCopyWithImpl<$Res>
     Object? error = freezed,
     Object? message = freezed,
     Object? validationErrors = freezed,
+    Object? feedback = freezed,
   }) {
     return _then(_ResponseModel(
       error: freezed == error
@@ -222,6 +257,10 @@ class __$ResponseModelCopyWithImpl<$Res>
           ? _self.validationErrors
           : validationErrors // ignore: cast_nullable_to_non_nullable
               as ValidationErrors?,
+      feedback: freezed == feedback
+          ? _self.feedback
+          : feedback // ignore: cast_nullable_to_non_nullable
+              as Feedback?,
     ));
   }
 
@@ -236,6 +275,20 @@ class __$ResponseModelCopyWithImpl<$Res>
 
     return $ValidationErrorsCopyWith<$Res>(_self.validationErrors!, (value) {
       return _then(_self.copyWith(validationErrors: value));
+    });
+  }
+
+  /// Create a copy of ResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FeedbackCopyWith<$Res>? get feedback {
+    if (_self.feedback == null) {
+      return null;
+    }
+
+    return $FeedbackCopyWith<$Res>(_self.feedback!, (value) {
+      return _then(_self.copyWith(feedback: value));
     });
   }
 }
@@ -392,6 +445,180 @@ class __$ValidationErrorsCopyWithImpl<$Res>
           ? _self._email
           : email // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$Feedback {
+  @JsonKey(name: 'warning')
+  String get warning;
+  @JsonKey(name: 'suggestions')
+  List<String> get suggestions;
+
+  /// Create a copy of Feedback
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FeedbackCopyWith<Feedback> get copyWith =>
+      _$FeedbackCopyWithImpl<Feedback>(this as Feedback, _$identity);
+
+  /// Serializes this Feedback to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Feedback &&
+            (identical(other.warning, warning) || other.warning == warning) &&
+            const DeepCollectionEquality()
+                .equals(other.suggestions, suggestions));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, warning, const DeepCollectionEquality().hash(suggestions));
+
+  @override
+  String toString() {
+    return 'Feedback(warning: $warning, suggestions: $suggestions)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FeedbackCopyWith<$Res> {
+  factory $FeedbackCopyWith(Feedback value, $Res Function(Feedback) _then) =
+      _$FeedbackCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'warning') String warning,
+      @JsonKey(name: 'suggestions') List<String> suggestions});
+}
+
+/// @nodoc
+class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
+  _$FeedbackCopyWithImpl(this._self, this._then);
+
+  final Feedback _self;
+  final $Res Function(Feedback) _then;
+
+  /// Create a copy of Feedback
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? warning = null,
+    Object? suggestions = null,
+  }) {
+    return _then(_self.copyWith(
+      warning: null == warning
+          ? _self.warning
+          : warning // ignore: cast_nullable_to_non_nullable
+              as String,
+      suggestions: null == suggestions
+          ? _self.suggestions
+          : suggestions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _Feedback implements Feedback {
+  const _Feedback(
+      {@JsonKey(name: 'warning') required this.warning,
+      @JsonKey(name: 'suggestions') required final List<String> suggestions})
+      : _suggestions = suggestions;
+  factory _Feedback.fromJson(Map<String, dynamic> json) =>
+      _$FeedbackFromJson(json);
+
+  @override
+  @JsonKey(name: 'warning')
+  final String warning;
+  final List<String> _suggestions;
+  @override
+  @JsonKey(name: 'suggestions')
+  List<String> get suggestions {
+    if (_suggestions is EqualUnmodifiableListView) return _suggestions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_suggestions);
+  }
+
+  /// Create a copy of Feedback
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FeedbackCopyWith<_Feedback> get copyWith =>
+      __$FeedbackCopyWithImpl<_Feedback>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FeedbackToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Feedback &&
+            (identical(other.warning, warning) || other.warning == warning) &&
+            const DeepCollectionEquality()
+                .equals(other._suggestions, _suggestions));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, warning, const DeepCollectionEquality().hash(_suggestions));
+
+  @override
+  String toString() {
+    return 'Feedback(warning: $warning, suggestions: $suggestions)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$FeedbackCopyWith<$Res>
+    implements $FeedbackCopyWith<$Res> {
+  factory _$FeedbackCopyWith(_Feedback value, $Res Function(_Feedback) _then) =
+      __$FeedbackCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'warning') String warning,
+      @JsonKey(name: 'suggestions') List<String> suggestions});
+}
+
+/// @nodoc
+class __$FeedbackCopyWithImpl<$Res> implements _$FeedbackCopyWith<$Res> {
+  __$FeedbackCopyWithImpl(this._self, this._then);
+
+  final _Feedback _self;
+  final $Res Function(_Feedback) _then;
+
+  /// Create a copy of Feedback
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? warning = null,
+    Object? suggestions = null,
+  }) {
+    return _then(_Feedback(
+      warning: null == warning
+          ? _self.warning
+          : warning // ignore: cast_nullable_to_non_nullable
+              as String,
+      suggestions: null == suggestions
+          ? _self._suggestions
+          : suggestions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }

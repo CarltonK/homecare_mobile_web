@@ -11,6 +11,7 @@ export 'data/datasources/auth_remote_datasource.dart';
 export 'data/repositories/auth_repository_impl.dart';
 
 export 'domain/entities/auth_entity.dart';
+export 'domain/entities/registration_entity.dart';
 export 'domain/repositories/auth_repository.dart';
 
 export 'domain/usecases/login_usecase.dart';

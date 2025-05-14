@@ -4,12 +4,7 @@ import '../../authentication.dart';
 
 abstract class AuthRemoteDataSource {
   Future<LoginResponse> authenticate(LoginRequest data);
-  Future<LoginResponse> register(
-    String username,
-    String password,
-    String firstName,
-    String lastName,
-  );
+  Future<RegistrationResponse> register(RegistrationRequest data);
   Future<void> logout();
   Future<ResponseModel> passwordReset(String email);
   Future<UserResponseModel> fetchUserDetails();
@@ -51,28 +46,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<LoginResponse> register(
-    String email,
-    String password,
-    String firstName,
-    String lastName,
-  ) async {
+  Future<RegistrationResponse> register(RegistrationRequest data) async {
     try {
-      final response = await apiClient.apiPost('/auth/register', data: {
-        'emailAddress': email,
-        'password': password,
-        'firstName': firstName,
-        'lastName': lastName,
-      });
+      final response = await apiClient.apiPost(
+        '/auth/register',
+        data: data.toJson(),
+      );
 
-      if (response.statusCode == 200) {
-        // Set credentials in ApiClient after successful login
-        // ignore: avoid_dynamic_calls
-        final String token = response.data['accessToken'];
-        apiClient.setAuthToken(token);
-      }
-
-      return LoginResponse.fromJson(response.data);
+      return RegistrationResponse.fromJson(response.data);
     } catch (e) {
       if (e is DioException) {
         if (e.error is ResponseModel) {

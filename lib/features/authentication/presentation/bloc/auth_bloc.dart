@@ -45,15 +45,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<RegistrationRequested>((event, emit) async {
       emit(AuthLoading());
-      final result = await registrationUseCase(
-        event.email,
-        event.password,
+      final RegistrationRequest regData = RegistrationRequest(
+        email: event.email,
+        password: event.password,
         firstName: event.firstName,
         lastName: event.lastName,
       );
+      final result = await registrationUseCase(regData);
       result.fold(
         (failure) => emit(AuthResponse(failure)),
-        (authEntity) => emit(AuthSuccess(authEntity)),
+        (authEntity) => emit(RegistrationSuccess(authEntity)),
       );
     });
 
