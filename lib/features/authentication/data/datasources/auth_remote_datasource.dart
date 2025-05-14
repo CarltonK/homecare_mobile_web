@@ -56,16 +56,26 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return RegistrationResponse.fromJson(response.data);
     } catch (e) {
       if (e is DioException) {
-        if (e.error is ResponseModel) {
-          throw e.error!;
-        } else {
-          final errorData =
-              e.response?.data ?? {'error': 'Registration failed'};
-          throw ResponseModel.fromJson(errorData);
+        if (e.response != null) {
+          // Handle structured error response
+          final errorData = e.response!.data;
+
+          if (errorData is Map<String, dynamic>) {
+            throw ResponseModel.fromJson(errorData);
+          } else if (errorData is String) {
+            // Handle string error responses
+            return throw ResponseModel(message: errorData);
+          }
         }
-      } else {
-        throw const ResponseModel(error: 'Unexpected error');
+        // Fallback for Dio errors without response
+        throw ResponseModel(
+          error: e.error?.toString() ?? 'Network error occurred',
+          message: e.message,
+        );
       }
+
+      // Handle non-Dio errors
+      throw const ResponseModel(error: 'Unexpected error');
     }
   }
 

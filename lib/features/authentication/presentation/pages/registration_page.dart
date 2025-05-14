@@ -98,26 +98,30 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is RegistrationSuccess) {
-          final String path =
-              state.regEntity.requiresVerification ? '/' : '/dashboard';
+          final RegistrationEntity reg = state.regEntity;
+          final String path = reg.requiresVerification ? '/' : '/dashboard';
           context.go(path);
+
+          final String message = reg.message;
+          GlobalSnackBar.show(context, message, isSuccess: true);
         } else if (state is AuthResponse) {
-          late bool isSuccess = false;
+          final ResponseModel response = state.model;
+          final bool isSuccess = false;
           late String msg = 'Success';
 
-          if (state.model.message != null) {
-            isSuccess = true;
-            msg = state.model.message!;
+          if (response.feedback != null && response.message != null) {
+            msg =
+                '${response.feedback!.suggestions.join(',')}\n${response.feedback!.warning}';
+          } else if (response.message != null) {
+            msg = response.message!;
             context.pop();
-          } else if (state.model.error != null) {
-            msg = state.model.error!;
-          } else if (state.model.validationErrors != null) {
-            msg = state.model.validationErrors!.email!.join(',');
+          } else if (response.error != null) {
+            msg = response.error!;
+          } else if (response.validationErrors != null) {
+            msg = response.validationErrors!.email!.join(',');
           }
 
           GlobalSnackBar.show(context, msg, isSuccess: isSuccess);
-
-          // Navigate back if "message" key in model
         } else if (state is AuthFailure) {
           GlobalSnackBar.show(context, state.message);
         }
