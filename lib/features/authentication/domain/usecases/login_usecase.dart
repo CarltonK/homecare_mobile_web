@@ -7,8 +7,7 @@ class LoginUseCase {
 
   LoginUseCase(this.repository);
 
-  Future<Either<ResponseModel, AuthEntity>> call(
-      String username, String password) {
-    return repository.authenticate(username, password);
+  Future<Either<ResponseModel, AuthEntity>> call(LoginRequest data) {
+    return repository.authenticate(data);
   }
 }

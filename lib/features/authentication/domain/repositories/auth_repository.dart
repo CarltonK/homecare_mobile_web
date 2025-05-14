@@ -3,10 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../authentication.dart';
 
 abstract class AuthRepository {
-  Future<Either<ResponseModel, AuthEntity>> authenticate(
-    String username,
-    String password,
-  );
+  Future<Either<ResponseModel, AuthEntity>> authenticate(LoginRequest data);
 
   Future<Either<ResponseModel, AuthEntity>> register(
     String username,

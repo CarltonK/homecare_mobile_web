@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './../../core/styles/style.dart';
+import './../../core/core.dart';
 
 class GlobalMultiInfoActionButton extends StatelessWidget {
   final String primaryText;

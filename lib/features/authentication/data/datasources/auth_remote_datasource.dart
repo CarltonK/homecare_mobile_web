@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
-
 import '../../../../core/core.dart';
 import '../../authentication.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<LoginResponse> authenticate(String username, String password);
+  Future<LoginResponse> authenticate(LoginRequest data);
   Future<LoginResponse> register(
     String username,
     String password,
@@ -18,18 +17,14 @@ abstract class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final ApiClient apiClient;
-
   AuthRemoteDataSourceImpl(this.apiClient);
 
   @override
-  Future<LoginResponse> authenticate(String email, String password) async {
+  Future<LoginResponse> authenticate(LoginRequest data) async {
     try {
       final response = await apiClient.apiPost(
         '/auth/login',
-        data: {
-          'emailAddress': email,
-          'password': password,
-        },
+        data: data.toJson(),
       );
 
       if (response.statusCode == 200) {
@@ -64,16 +59,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   ) async {
     try {
       final response = await apiClient.apiPost('/auth/register', data: {
-        'email': email,
+        'emailAddress': email,
         'password': password,
-        'first_name': firstName,
-        'last_name': lastName,
+        'firstName': firstName,
+        'lastName': lastName,
       });
 
       if (response.statusCode == 200) {
         // Set credentials in ApiClient after successful login
         // ignore: avoid_dynamic_calls
-        final String token = response.data['access_token'];
+        final String token = response.data['accessToken'];
         apiClient.setAuthToken(token);
       }
 
@@ -116,8 +111,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<ResponseModel> passwordReset(String email) async {
     try {
       final response = await apiClient.apiPost(
-        '/auth/password/request-reset',
-        data: {'email': email},
+        '/auth/password/request-password-reset',
+        data: {'emailAddress': email},
       );
       return ResponseModel.fromJson(response.data);
     } catch (e) {

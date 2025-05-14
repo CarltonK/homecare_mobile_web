@@ -7,10 +7,10 @@ part 'registration_request_model.g.dart';
 abstract class RegistrationRequest with _$RegistrationRequest {
   @JsonSerializable(explicitToJson: true)
   const factory RegistrationRequest({
-    @JsonKey(name: 'email') required String email,
+    @JsonKey(name: 'emailAddress') required String email,
     @JsonKey(name: 'password') required String password,
-    @JsonKey(name: 'first_name') String? firstName,
-    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'firstName') String? firstName,
+    @JsonKey(name: 'lastName') String? lastName,
   }) = _RegistrationRequest;
 
   factory RegistrationRequest.fromJson(Map<String, dynamic> json) =>

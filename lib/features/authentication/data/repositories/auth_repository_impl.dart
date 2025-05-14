@@ -9,11 +9,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<ResponseModel, AuthEntity>> authenticate(
-    String username,
-    String password,
-  ) async {
+      LoginRequest data) async {
     try {
-      final response = await remoteDataSource.authenticate(username, password);
+      final response = await remoteDataSource.authenticate(data);
       return Right(AuthEntity.fromLoginResponse(response));
     } catch (e) {
       if (e is ResponseModel) {

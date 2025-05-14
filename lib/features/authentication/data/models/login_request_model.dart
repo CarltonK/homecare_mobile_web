@@ -7,7 +7,7 @@ part 'login_request_model.g.dart';
 abstract class LoginRequest with _$LoginRequest {
   @JsonSerializable(explicitToJson: true)
   const factory LoginRequest({
-    @JsonKey(name: 'email') required String email,
+    @JsonKey(name: 'emailAddress') required String email,
     @JsonKey(name: 'password') required String password,
   }) = _LoginRequest;
 

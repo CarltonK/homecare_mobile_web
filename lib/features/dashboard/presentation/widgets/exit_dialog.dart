@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './../../../../core/styles/style.dart';
+import './../../../../core/core.dart';
 
 class ExitConfirmationDialog extends StatelessWidget {
   final String title;

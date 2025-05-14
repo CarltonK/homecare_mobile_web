@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:homecare_mobile/core/styles/style.dart';
-import '../../../../core/utilities/utilities.dart';
+import '../../../../core/core.dart';
 import '../../../../widgets/widgets.dart';
 import '../../../authentication/authentication.dart';
 import '../../dashboard.dart';

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$LoginRequest {
-  @JsonKey(name: 'email')
+  @JsonKey(name: 'emailAddress')
   String get email;
   @JsonKey(name: 'password')
   String get password;
@@ -58,7 +58,7 @@ abstract mixin class $LoginRequestCopyWith<$Res> {
       _$LoginRequestCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'email') String email,
+      {@JsonKey(name: 'emailAddress') String email,
       @JsonKey(name: 'password') String password});
 }
 
@@ -95,13 +95,13 @@ class _$LoginRequestCopyWithImpl<$Res> implements $LoginRequestCopyWith<$Res> {
 @JsonSerializable(explicitToJson: true)
 class _LoginRequest implements LoginRequest {
   const _LoginRequest(
-      {@JsonKey(name: 'email') required this.email,
+      {@JsonKey(name: 'emailAddress') required this.email,
       @JsonKey(name: 'password') required this.password});
   factory _LoginRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginRequestFromJson(json);
 
   @override
-  @JsonKey(name: 'email')
+  @JsonKey(name: 'emailAddress')
   final String email;
   @override
   @JsonKey(name: 'password')
@@ -151,7 +151,7 @@ abstract mixin class _$LoginRequestCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'email') String email,
+      {@JsonKey(name: 'emailAddress') String email,
       @JsonKey(name: 'password') String password});
 }
 

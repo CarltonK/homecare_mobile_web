@@ -15,13 +15,13 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$RegistrationRequest {
-  @JsonKey(name: 'email')
+  @JsonKey(name: 'emailAddress')
   String get email;
   @JsonKey(name: 'password')
   String get password;
-  @JsonKey(name: 'first_name')
+  @JsonKey(name: 'firstName')
   String? get firstName;
-  @JsonKey(name: 'last_name')
+  @JsonKey(name: 'lastName')
   String? get lastName;
 
   /// Create a copy of RegistrationRequest
@@ -67,10 +67,10 @@ abstract mixin class $RegistrationRequestCopyWith<$Res> {
       _$RegistrationRequestCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'email') String email,
+      {@JsonKey(name: 'emailAddress') String email,
       @JsonKey(name: 'password') String password,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName});
+      @JsonKey(name: 'firstName') String? firstName,
+      @JsonKey(name: 'lastName') String? lastName});
 }
 
 /// @nodoc
@@ -117,24 +117,24 @@ class _$RegistrationRequestCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _RegistrationRequest implements RegistrationRequest {
   const _RegistrationRequest(
-      {@JsonKey(name: 'email') required this.email,
+      {@JsonKey(name: 'emailAddress') required this.email,
       @JsonKey(name: 'password') required this.password,
-      @JsonKey(name: 'first_name') this.firstName,
-      @JsonKey(name: 'last_name') this.lastName});
+      @JsonKey(name: 'firstName') this.firstName,
+      @JsonKey(name: 'lastName') this.lastName});
   factory _RegistrationRequest.fromJson(Map<String, dynamic> json) =>
       _$RegistrationRequestFromJson(json);
 
   @override
-  @JsonKey(name: 'email')
+  @JsonKey(name: 'emailAddress')
   final String email;
   @override
   @JsonKey(name: 'password')
   final String password;
   @override
-  @JsonKey(name: 'first_name')
+  @JsonKey(name: 'firstName')
   final String? firstName;
   @override
-  @JsonKey(name: 'last_name')
+  @JsonKey(name: 'lastName')
   final String? lastName;
 
   /// Create a copy of RegistrationRequest
@@ -187,10 +187,10 @@ abstract mixin class _$RegistrationRequestCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'email') String email,
+      {@JsonKey(name: 'emailAddress') String email,
       @JsonKey(name: 'password') String password,
-      @JsonKey(name: 'first_name') String? firstName,
-      @JsonKey(name: 'last_name') String? lastName});
+      @JsonKey(name: 'firstName') String? firstName,
+      @JsonKey(name: 'lastName') String? lastName});
 }
 
 /// @nodoc
