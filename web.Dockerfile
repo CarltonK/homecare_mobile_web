@@ -22,7 +22,7 @@ RUN flutter pub get
 COPY . .
 
 # Build the Flutter web app
-RUN flutter build web --release
+RUN flutter build web --release --dart-define-from-file=config/config.json
 
 # Stage 2: Serve with Nginx
 FROM nginx:stable AS production
