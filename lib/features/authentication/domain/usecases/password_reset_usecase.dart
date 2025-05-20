@@ -6,7 +6,7 @@ class PasswordResetUseCase {
 
   PasswordResetUseCase(this.repository);
 
-  Future<Either<ResponseModel, ResponseModel>> call(String email) {
-    return repository.passwordReset(email);
+  Future<Either<ResponseModel, ResponseModel>> call(LoginRequest data) {
+    return repository.passwordReset(data);
   }
 }

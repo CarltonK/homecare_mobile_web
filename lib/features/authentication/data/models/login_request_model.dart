@@ -8,7 +8,7 @@ abstract class LoginRequest with _$LoginRequest {
   @JsonSerializable(explicitToJson: true)
   const factory LoginRequest({
     @JsonKey(name: 'emailAddress') required String email,
-    @JsonKey(name: 'password') required String password,
+    @JsonKey(name: 'password') String? password,
   }) = _LoginRequest;
 
   factory LoginRequest.fromJson(Map<String, dynamic> json) =>

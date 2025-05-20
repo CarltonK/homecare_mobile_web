@@ -69,7 +69,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<PasswordResetRequested>((event, emit) async {
       emit(AuthLoading());
-      final result = await passwordResetUseCase(event.email);
+      final LoginRequest resetData = LoginRequest(
+        email: event.email,
+      );
+      final result = await passwordResetUseCase(resetData);
       result.fold(
         (failure) => emit(AuthResponse(failure)),
         (response) => emit(AuthResponse(response)),

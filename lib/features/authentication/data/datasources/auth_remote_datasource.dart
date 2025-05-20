@@ -6,7 +6,7 @@ abstract class AuthRemoteDataSource {
   Future<LoginResponse> authenticate(LoginRequest data);
   Future<RegistrationResponse> register(RegistrationRequest data);
   Future<void> logout();
-  Future<ResponseModel> passwordReset(String email);
+  Future<ResponseModel> passwordReset(LoginRequest data);
   Future<UserResponseModel> fetchUserDetails();
 }
 
@@ -99,11 +99,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<ResponseModel> passwordReset(String email) async {
+  Future<ResponseModel> passwordReset(LoginRequest data) async {
     try {
       final response = await apiClient.apiPost(
-        '/auth/password/request-password-reset',
-        data: {'emailAddress': email},
+        '/auth/request-password-reset',
+        data: data.toJson(),
       );
       return ResponseModel.fromJson(response.data);
     } catch (e) {

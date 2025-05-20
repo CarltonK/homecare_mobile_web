@@ -18,7 +18,7 @@ mixin _$LoginRequest {
   @JsonKey(name: 'emailAddress')
   String get email;
   @JsonKey(name: 'password')
-  String get password;
+  String? get password;
 
   /// Create a copy of LoginRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -59,7 +59,7 @@ abstract mixin class $LoginRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'emailAddress') String email,
-      @JsonKey(name: 'password') String password});
+      @JsonKey(name: 'password') String? password});
 }
 
 /// @nodoc
@@ -75,17 +75,17 @@ class _$LoginRequestCopyWithImpl<$Res> implements $LoginRequestCopyWith<$Res> {
   @override
   $Res call({
     Object? email = null,
-    Object? password = null,
+    Object? password = freezed,
   }) {
     return _then(_self.copyWith(
       email: null == email
           ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      password: null == password
+      password: freezed == password
           ? _self.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -96,7 +96,7 @@ class _$LoginRequestCopyWithImpl<$Res> implements $LoginRequestCopyWith<$Res> {
 class _LoginRequest implements LoginRequest {
   const _LoginRequest(
       {@JsonKey(name: 'emailAddress') required this.email,
-      @JsonKey(name: 'password') required this.password});
+      @JsonKey(name: 'password') this.password});
   factory _LoginRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginRequestFromJson(json);
 
@@ -105,7 +105,7 @@ class _LoginRequest implements LoginRequest {
   final String email;
   @override
   @JsonKey(name: 'password')
-  final String password;
+  final String? password;
 
   /// Create a copy of LoginRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -152,7 +152,7 @@ abstract mixin class _$LoginRequestCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'emailAddress') String email,
-      @JsonKey(name: 'password') String password});
+      @JsonKey(name: 'password') String? password});
 }
 
 /// @nodoc
@@ -169,17 +169,17 @@ class __$LoginRequestCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? email = null,
-    Object? password = null,
+    Object? password = freezed,
   }) {
     return _then(_LoginRequest(
       email: null == email
           ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      password: null == password
+      password: freezed == password
           ? _self.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
