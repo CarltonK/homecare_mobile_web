@@ -42,6 +42,8 @@ class AuthResponse extends AuthState {
   AuthResponse(this.model);
 }
 
+class NullResponse extends AuthState {}
+
 class PasswordResetResponse extends AuthState {
   final ResponseModel model;
 

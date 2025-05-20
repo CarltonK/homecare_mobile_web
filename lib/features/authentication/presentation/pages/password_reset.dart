@@ -73,6 +73,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         if (state is AuthSuccess) {
           // Navigate back
           context.pop();
+        } else if (state is NullResponse) {
+          context.go('/complete-password-reset');
         } else if (state is AuthResponse) {
           late bool isSuccess = false;
           late String msg = 'Success';

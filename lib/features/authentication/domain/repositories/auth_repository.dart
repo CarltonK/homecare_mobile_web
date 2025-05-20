@@ -10,7 +10,8 @@ abstract class AuthRepository {
 
   Future<Either<ResponseModel, void>> logout();
 
-  Future<Either<ResponseModel, ResponseModel>> passwordReset(LoginRequest data);
+  Future<Either<ResponseModel, ResponseModel?>> passwordReset(
+      LoginRequest data);
 
   Future<Either<ResponseModel, UserResponseModel>> fetchUserDetails();
 }

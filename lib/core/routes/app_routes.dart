@@ -30,6 +30,11 @@ class AppRoutes {
             name: 'password-reset',
             builder: AppWidgets.passwordResetViewWidget,
           ),
+          GoRoute(
+            path: AppPages.completePasswordResetView,
+            name: 'complete-password-reset',
+            builder: AppWidgets.completePasswordResetViewWidget,
+          ),
         ],
       ),
     ],

@@ -7,6 +7,7 @@ class AppPages {
   // Authentication
   static const registrationView = 'registration';
   static const passwordResetView = 'password-reset';
+  static const completePasswordResetView = 'complete-password-reset';
 
   // Dashboard
   static const dashboardView = 'dashboard';
@@ -33,6 +34,12 @@ class AppWidgets {
     GoRouterState state,
   ) =>
       const ResetPasswordPage();
+
+  static Widget completePasswordResetViewWidget(
+    BuildContext context,
+    GoRouterState state,
+  ) =>
+      const CompletePasswordReset();
 
   /*
    * Dashboard

@@ -15,5 +15,5 @@ _LoginRequest _$LoginRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$LoginRequestToJson(_LoginRequest instance) =>
     <String, dynamic>{
       'emailAddress': instance.email,
-      'password': instance.password,
+      if (instance.password case final value?) 'password': value,
     };

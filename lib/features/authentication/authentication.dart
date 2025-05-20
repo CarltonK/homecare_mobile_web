@@ -1,6 +1,7 @@
 export 'presentation/pages/landing_page.dart';
 export 'presentation/pages/registration_page.dart';
 export 'presentation/pages/password_reset.dart';
+export 'presentation/pages/complete_password_reset.dart';
 
 export 'presentation/bloc/auth_bloc.dart';
 export 'presentation/bloc/auth_event.dart';

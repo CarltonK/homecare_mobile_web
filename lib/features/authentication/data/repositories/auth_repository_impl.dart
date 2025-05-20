@@ -49,7 +49,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<ResponseModel, ResponseModel>> passwordReset(
+  Future<Either<ResponseModel, ResponseModel?>> passwordReset(
       LoginRequest data) async {
     try {
       final response = await remoteDataSource.passwordReset(data);

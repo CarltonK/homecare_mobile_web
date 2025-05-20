@@ -75,7 +75,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final result = await passwordResetUseCase(resetData);
       result.fold(
         (failure) => emit(AuthResponse(failure)),
-        (response) => emit(AuthResponse(response)),
+        (response) {
+          if (response != null) {
+            emit(AuthResponse(response));
+          } else {
+            emit(NullResponse());
+          }
+        },
       );
     });
 
